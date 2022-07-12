@@ -108,6 +108,7 @@ MonoBehaviour:
   tile255: {fileID: 7971745469082176922, guid: f45fd1ae1269c8846a05907367b14858, type: 3}
   tile241: {fileID: 3404551885209003231, guid: 6afa898d40001384fbef69618c536ef4, type: 3}
   tile187: {fileID: 4528944557141009252, guid: 1828d15490358c744a67c41de3d2e7c9, type: 3}
+  snapYPosition: 1
   tileWidth: 0.16
   tileHeight: 0.16
 --- !u!61 &5333972958887303045
@@ -151,7 +152,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 0
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 90
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
