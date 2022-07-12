@@ -15,6 +15,7 @@ public class SmartPlatform : MonoBehaviour
 	public GameObject tile241;
 	public GameObject tile187;
 	
+	public bool snapYPosition = true;
 	public float tileWidth = 0.16f;
 	public float tileHeight = 0.16f;
 	
@@ -40,6 +41,8 @@ public class SmartPlatform : MonoBehaviour
 	
 	void rebuild() {
 		Destroy(GetComponent<SpriteRenderer>());
+		if(snapYPosition)
+			transform.position = new Vector3(transform.position.x, (float) Math.Round(transform.position.y * 2f / tileWidth) * tileWidth / 2, transform.position.z);
 		if(width == 0) {
 			Debug.Log("WARNING: Platform with width 0");
 			return;
