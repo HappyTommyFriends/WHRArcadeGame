@@ -242,6 +242,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 175515402}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2119135664}
@@ -1078,6 +1082,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 175515402}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: homingJump
       value: 0
       objectReference: {fileID: 0}
@@ -1230,6 +1238,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 175515402}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
@@ -2036,6 +2048,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 175515402}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2119135664}
@@ -2100,6 +2116,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 175515402}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
@@ -2314,6 +2334,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 175515402}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2119135664}
@@ -2468,7 +2492,7 @@ GameObject:
   - component: {fileID: 642132105}
   - component: {fileID: 642132104}
   m_Layer: 0
-  m_Name: brush_003
+  m_Name: ENDTRIGGERBITCH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2844,6 +2868,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 175515402}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
@@ -3368,6 +3396,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1114356041}
     m_Modifications:
     - target: {fileID: 5333972958887303042, guid: 1fd63a956d6c84b5b98d1f2980a9bcb6, type: 3}
+      propertyPath: m_UseOneWay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333972958887303042, guid: 1fd63a956d6c84b5b98d1f2980a9bcb6, type: 3}
       propertyPath: m_SurfaceArc
       value: 90
       objectReference: {fileID: 0}
@@ -3381,7 +3413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5333972958887303046, guid: 1fd63a956d6c84b5b98d1f2980a9bcb6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9936
+      value: 1.2843274
       objectReference: {fileID: 0}
     - target: {fileID: 5333972958887303046, guid: 1fd63a956d6c84b5b98d1f2980a9bcb6, type: 3}
       propertyPath: m_LocalScale.y
@@ -3389,7 +3421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5333972958887303046, guid: 1fd63a956d6c84b5b98d1f2980a9bcb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.336409
+      value: 21.3132
       objectReference: {fileID: 0}
     - target: {fileID: 5333972958887303046, guid: 1fd63a956d6c84b5b98d1f2980a9bcb6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3795,6 +3827,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 175515402}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2119135664}
@@ -3864,6 +3900,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 175515402}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
@@ -4692,6 +4732,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 175515402}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2119135664}
@@ -5087,6 +5131,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 175515402}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: oscillate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
