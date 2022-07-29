@@ -207,8 +207,12 @@ public class SmartPlatform : MonoBehaviour
 		int y = (int) Math.Floor((topLeft().y - point.y) / tileHeight);
 		if(y >= tiles.Count)
 			y = tiles.Count - 1;
+		if(y < 0)
+			y = 0;
 		if(x >= tiles[y].Count)
 			x = tiles[y].Count - 1;
+		if(x < 0)
+			x = 0;
 		Debug.Log(x + "," + y);
 		Destroy(tiles[y][x]);
 		dig(x, y);
