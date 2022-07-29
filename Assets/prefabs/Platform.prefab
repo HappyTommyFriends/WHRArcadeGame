@@ -111,6 +111,8 @@ MonoBehaviour:
   snapYPosition: 1
   tileWidth: 0.16
   tileHeight: 0.16
+  diggable: 0
+  smartPlatformPrefab: {fileID: 5333972958887303043}
 --- !u!61 &5333972958887303045
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -9,10 +9,16 @@ public class WHRPlayerController : PlayerController {
 	public float attackRange = 0.08f;
 	public float attackPower = 1f;
 	public HPDisplayHearts hpDisplay;
+	public float digOffset = 0.16f;
+	public float digDistance = 0.02f;
+	public float digDuration = 0.3f;
 	
 	bool _attacking = false;
 	float lastJump = 0;
-	Vector3 attackOrigin = new Vector3(0, 0.32f, 0);
+	Vector3 attackOrigin = new Vector3(0, 0.16f, 0);
+	bool movementFrozen = false;
+	float oldGravityScale;
+	string lastAction;
 
 	// Ghosts and Goblins
     const int STATE_IDLE = 0;
@@ -51,6 +57,7 @@ public class WHRPlayerController : PlayerController {
 	
 	protected override void takeAction(string action) {
 		// Debug.Log("takeAction " + action);
+		lastAction = action;
 		
 		switch(action) {
 			case "attackdown":
@@ -69,6 +76,9 @@ public class WHRPlayerController : PlayerController {
 				break;
 			case "attackup":
 				attemptAttackUp();
+				break;
+			case "down":
+				attemptDig();
 				break;
 			case "idle":
 				horizontalSpeed = 0;
@@ -91,6 +101,10 @@ public class WHRPlayerController : PlayerController {
 				jumpLeft();
 				break;
 		}
+		
+		if(movementFrozen) {
+			horizontalSpeed = 0;
+		}
 	}
 	
 	void attemptAttackCurrentDirection() {
@@ -108,6 +122,183 @@ public class WHRPlayerController : PlayerController {
 				attemptAttackUp();
 				break;
 		}
+	}
+	
+	Vector2 digStartVector() {
+		switch(_currentDirection) {
+			case "down":
+				return new Vector2(0, -digOffset);
+			case "left":
+				return new Vector2(-digOffset, 0.08f);
+			case "right":
+				return new Vector2(digOffset, 0.08f);
+			case "up":
+				return new Vector2(0, digOffset);
+		}
+		
+		return Vector2.zero;
+	}
+	
+	Vector2 directionVector() {
+		switch(_currentDirection) {
+			case "down":
+				return Vector2.down.normalized;
+			case "left":
+				return Vector2.left.normalized;
+			case "right":
+				return Vector2.right.normalized;
+			case "up":
+				return Vector2.up.normalized;
+		}
+		
+		return Vector2.zero;
+	}
+	
+	void digIfApplicable() {
+		if(!canDig())
+			return;
+		
+		if(rigidBody.velocity.y != 0)
+			return;
+		
+		Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digStartVector();
+		// Debug.DrawLine(rayStart, rayStart + directionVector() * digDistance);
+		
+		RaycastHit2D hit = Physics2D.Raycast(rayStart, directionVector(), digDistance);
+        if(hit.collider != null) {
+			SmartPlatform platform = hit.collider.gameObject.GetComponent<SmartPlatform>();
+			if(platform != null && platform.diggable) {
+				platform.attemptDig(hit.point);
+				if(!movementFrozen) {
+					freezeMovement();
+					Vector2 adjustmentVector = directionVector() * -0.02f;
+					transform.position = transform.position + new Vector3(adjustmentVector.x, adjustmentVector.y, 0);
+					Invoke("unfreezeMovement", digDuration);
+				}
+			}
+		}
+		
+		hit = Physics2D.Raycast(rayStart + new Vector2(0, 0.16f), directionVector(), digDistance);
+        if(hit.collider == null)
+			return;
+		
+		SmartPlatform platform2 = hit.collider.gameObject.GetComponent<SmartPlatform>();
+		if(platform2 == null)
+			return;
+		
+		if(!platform2.diggable)
+			return;
+		
+		platform2.attemptDig(hit.point);
+		if(!movementFrozen) {
+			freezeMovement();
+			Vector2 adjustmentVector = directionVector() * -0.02f;
+			transform.position = transform.position + new Vector3(adjustmentVector.x, adjustmentVector.y, 0);
+			Invoke("unfreezeMovement", digDuration);
+		}
+		
+		if(movementFrozen) {
+			secondDig();
+		}
+	}
+	
+	void secondDig() {
+		if(!canDig())
+			return;
+		
+		if(rigidBody.velocity.y != 0)
+			return;
+		
+		Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digStartVector();
+		// Debug.DrawLine(rayStart, rayStart + directionVector() * digDistance);
+		
+		RaycastHit2D hit = Physics2D.Raycast(rayStart, directionVector(), digDistance);
+        if(hit.collider != null) {
+			SmartPlatform platform = hit.collider.gameObject.GetComponent<SmartPlatform>();
+			if(platform != null && platform.diggable) {
+				platform.attemptDig(hit.point);
+			}
+		}
+		
+		hit = Physics2D.Raycast(rayStart + new Vector2(0, 0.16f), directionVector(), digDistance);
+        if(hit.collider == null)
+			return;
+		
+		SmartPlatform platform2 = hit.collider.gameObject.GetComponent<SmartPlatform>();
+		if(platform2 == null)
+			return;
+		
+		if(!platform2.diggable)
+			return;
+		
+		platform2.attemptDig(hit.point);
+	}
+	
+	void freezeMovement() {
+		Debug.Log("Freezing Movement");
+		horizontalSpeed = 0;
+		movementFrozen = true;
+		if(GetComponent<Rigidbody2D>().gravityScale != 0)
+			oldGravityScale = GetComponent<Rigidbody2D>().gravityScale;
+		GetComponent<Rigidbody2D>().gravityScale = 0;
+		
+		GetComponent<BoxCollider2D>().enabled = false;
+	}
+	
+	void unfreezeMovement() {
+		Debug.Log("Unfreezing Movement");
+		movementFrozen = false;
+		GetComponent<Rigidbody2D>().gravityScale = oldGravityScale;
+		GetComponent<BoxCollider2D>().enabled = true;
+	}
+	
+	void attemptDig() {
+		Debug.Log("attemptDig");
+		if(!canDig())
+			return;
+		
+		if(rigidBody.velocity.y != 0)
+			return;
+		
+		Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digOffsetVector();
+		Debug.Log(rayStart);
+		Debug.Log(rayStart + Vector2.down.normalized * digDistance);
+		Debug.DrawLine(rayStart, rayStart + Vector2.down.normalized * digDistance);
+		RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, digDistance);
+        if(hit.collider == null)
+			return;
+		
+		Debug.Log(hit.collider);
+		Debug.Log(hit.collider.name);
+		if(hit.collider.gameObject.name == "Platform") {
+			SmartPlatform platform = hit.collider.gameObject.GetComponent<SmartPlatform>();
+			if(platform == null)
+				return;
+			
+			if(platform.diggable)
+				platform.attemptDig(hit.point);
+		}
+	}
+	
+	void FixedUpdate() {
+		Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digOffsetVector();
+		Debug.DrawLine(rayStart, rayStart + Vector2.down.normalized * digDistance);
+		
+		/* Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digStartVector();
+		Debug.Log(rayStart);
+		Debug.Log(directionVector() * digDistance);
+		Debug.DrawLine(rayStart, rayStart + directionVector() * digDistance); */
+		
+		if(horizontalSpeed != 0)
+			digIfApplicable();
+	}
+	
+	Vector2 digOffsetVector() {
+		return new Vector2(0, digOffset);
+	}
+	
+	bool canDig() {
+		return true;
 	}
 	
 	void attemptAttackDown() {
