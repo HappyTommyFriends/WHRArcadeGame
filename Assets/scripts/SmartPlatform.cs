@@ -13,7 +13,6 @@ public class SmartPlatform : MonoBehaviour
 	public GameObject tile191;
 	public GameObject tile255;
 	public GameObject tile241;
-	public GameObject tile187;
 	
 	public bool snapYPosition = true;
 	public float tileWidth = 0.16f;
