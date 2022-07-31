@@ -250,6 +250,16 @@ public class WHRPlayerController : PlayerController {
 		movementFrozen = false;
 		GetComponent<Rigidbody2D>().gravityScale = oldGravityScale;
 		GetComponent<BoxCollider2D>().enabled = true;
+		maybeTakeLastAction();
+	}
+	
+	void maybeTakeLastAction() {
+		switch(lastAction) {
+			case "upRight":
+			case "upLeft":
+			case "up":
+				return;
+		}
 		takeAction(lastAction);
 	}
 	
@@ -404,7 +414,7 @@ public class WHRPlayerController : PlayerController {
 	}	
 	
 	void attemptJump() {
-		if(lastJump + 0.1 > Time.realtimeSinceStartup)
+		if(movementFrozen || lastJump + 0.1 > Time.realtimeSinceStartup)
 			return;
 		
 		if(grounded())
