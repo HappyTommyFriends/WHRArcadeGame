@@ -19,6 +19,7 @@ public class WHRPlayerController : PlayerController {
 	bool movementFrozen = false;
 	float oldGravityScale;
 	string lastAction;
+	bool preCheckJumps = false;
 
 	// Ghosts and Goblins
     const int STATE_IDLE = 0;
@@ -154,6 +155,24 @@ public class WHRPlayerController : PlayerController {
 		return Vector2.zero;
 	}
 	
+	Vector2 motionDirectionVector() {
+		if(horizontalSpeed < 0)
+			return Vector2.left.normalized;
+		
+		if(horizontalSpeed > 1)
+			return Vector2.right.normalized;
+		
+		return Vector2.zero;
+	}
+	
+	void digFix() {
+		preCheckJumps = true;
+		freezeMovement();
+		Vector2 adjustmentVector = directionVector() * -0.02f;
+		transform.position = transform.position + new Vector3(adjustmentVector.x, adjustmentVector.y, 0);
+		Invoke("unfreezeMovement", digDuration);
+	}
+	
 	void digIfApplicable() {
 		if(!canDig())
 			return;
@@ -170,10 +189,7 @@ public class WHRPlayerController : PlayerController {
 			if(platform != null && platform.diggable) {
 				platform.attemptDig(hit.point);
 				if(!movementFrozen) {
-					freezeMovement();
-					Vector2 adjustmentVector = directionVector() * -0.02f;
-					transform.position = transform.position + new Vector3(adjustmentVector.x, adjustmentVector.y, 0);
-					Invoke("unfreezeMovement", digDuration);
+					digFix();
 				}
 			}
 		}
@@ -191,10 +207,7 @@ public class WHRPlayerController : PlayerController {
 		
 		platform2.attemptDig(hit.point);
 		if(!movementFrozen) {
-			freezeMovement();
-			Vector2 adjustmentVector = directionVector() * -0.02f;
-			transform.position = transform.position + new Vector3(adjustmentVector.x, adjustmentVector.y, 0);
-			Invoke("unfreezeMovement", digDuration);
+			digFix();
 		}
 		
 		if(movementFrozen) {
@@ -250,6 +263,16 @@ public class WHRPlayerController : PlayerController {
 		movementFrozen = false;
 		GetComponent<Rigidbody2D>().gravityScale = oldGravityScale;
 		GetComponent<BoxCollider2D>().enabled = true;
+		maybeTakeLastAction();
+	}
+	
+	void maybeTakeLastAction() {
+		switch(lastAction) {
+			case "upRight":
+			case "upLeft":
+			case "up":
+				return;
+		}
 		takeAction(lastAction);
 	}
 	
@@ -282,14 +305,18 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void FixedUpdate() {
-		Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digOffsetVector();
-		Debug.DrawLine(rayStart, rayStart + Vector2.down.normalized * digDistance);
+		//Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digOffsetVector();
+		//Debug.DrawLine(rayStart, rayStart + Vector2.down.normalized * digDistance);
 		
 		/* Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digStartVector();
 		Debug.Log(rayStart);
 		Debug.Log(directionVector() * digDistance);
 		Debug.DrawLine(rayStart, rayStart + directionVector() * digDistance); */
 		
+		
+		Debug.DrawLine(jumpCheckOrigin(), jumpCheckOrigin() + jumpCheckDirection() * 0.06f);
+		
+		Debug.Log(velocity);
 		if(horizontalSpeed != 0)
 			digIfApplicable();
 	}
@@ -299,6 +326,9 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	bool canDig() {
+		if(rigidBody.velocity.y != 0)
+			return false;
+		
 		return true;
 	}
 	
@@ -420,9 +450,30 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void jump() {
-	   rigidBody.AddForce(new Vector2(0, jumpStrength));
-       changeState(jumpState());
-	   lastJump = Time.realtimeSinceStartup;
+		if(preCheckJumps && !preJumpCheck())
+			return;
+		
+		rigidBody.AddForce(new Vector2(0, jumpStrength));
+		changeState(jumpState());
+		lastJump = Time.realtimeSinceStartup;
+		
+		preCheckJumps = false;
+	}
+	
+	bool preJumpCheck() {
+		RaycastHit2D hit = Physics2D.Raycast(jumpCheckOrigin(), jumpCheckDirection(), 0.06f);
+		if(hit.collider != null)
+			return false;
+		
+		return true;
+	}
+	
+	Vector2 jumpCheckOrigin() {
+		return new Vector2(transform.position.x, transform.position.y + 0.30f) + motionDirectionVector() * 0.08f;
+	}
+	
+	Vector2 jumpCheckDirection() {
+		return Vector2.up + motionDirectionVector();
 	}
 	
 	int jumpState() {
