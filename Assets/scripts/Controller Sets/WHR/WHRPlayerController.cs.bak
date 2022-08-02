@@ -12,6 +12,7 @@ public class WHRPlayerController : PlayerController {
 	public float digOffset = 0.16f;
 	public float digDistance = 0.02f;
 	public float digDuration = 0.3f;
+	public AudioClip jumpNoise;
 	
 	bool _attacking = false;
 	float lastJump = 0;
@@ -20,6 +21,7 @@ public class WHRPlayerController : PlayerController {
 	float oldGravityScale;
 	string lastAction;
 	bool preCheckJumps = false;
+	AudioSource audioSource;
 
 	// Ghosts and Goblins
     const int STATE_IDLE = 0;
@@ -52,8 +54,12 @@ public class WHRPlayerController : PlayerController {
 	const int STATE_BIG_IDLE = 63;
 	
 	new void setStartingAnimationState() {
+		Debug.Log("setStartingAnimationState");
 		_currentAnimationState = STATE_IDLE;
 		updateHPDisplay();
+		audioSource = GetComponent<AudioSource>();
+		Debug.Log("audioSource: ");
+		Debug.Log(audioSource);
 	}
 	
 	protected override void takeAction(string action) {
@@ -316,7 +322,6 @@ public class WHRPlayerController : PlayerController {
 		
 		Debug.DrawLine(jumpCheckOrigin(), jumpCheckOrigin() + jumpCheckDirection() * 0.06f);
 		
-		Debug.Log(velocity);
 		if(horizontalSpeed != 0)
 			digIfApplicable();
 	}
@@ -453,6 +458,7 @@ public class WHRPlayerController : PlayerController {
 		if(preCheckJumps && !preJumpCheck())
 			return;
 		
+		audioSource.PlayOneShot(jumpNoise);
 		rigidBody.AddForce(new Vector2(0, jumpStrength));
 		changeState(jumpState());
 		lastJump = Time.realtimeSinceStartup;
