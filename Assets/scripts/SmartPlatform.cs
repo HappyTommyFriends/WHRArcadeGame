@@ -64,9 +64,9 @@ public class SmartPlatform : MonoBehaviour
 	}
 	
 	void rebuild() {
-		Debug.Log("Rebuilding");
-		Debug.Log(this);
-		Debug.Log(width + "x" + height);
+		// Debug.Log("Rebuilding");
+		// Debug.Log(this);
+		// Debug.Log(width + "x" + height);
 		
 		
 		if(rightSplit) {
@@ -197,8 +197,8 @@ public class SmartPlatform : MonoBehaviour
 	}
 	
 	public void attemptDig(Vector3 point) {
-		Debug.Log("Attempting dig");
-		Debug.Log(point);
+		// Debug.Log("Attempting dig");
+		// Debug.Log(point);
 /* 		foreach (Transform child in transform) {
 			Debug.Log(child.gameObject);
 		} */
@@ -212,7 +212,7 @@ public class SmartPlatform : MonoBehaviour
 			x = tiles[y].Count - 1;
 		if(x < 0)
 			x = 0;
-		Debug.Log(x + "," + y);
+		// Debug.Log(x + "," + y);
 		Destroy(tiles[y][x]);
 		dig(x, y);
 	}
@@ -230,7 +230,7 @@ public class SmartPlatform : MonoBehaviour
 	}
 	
 	private void digMiddle(int x, int y) {
-		Debug.Log("digMiddle");
+		// Debug.Log("digMiddle");
 		if(reconstructive) {
 			Debug.Log("Reconstructive platforms not yet programmed");
 			return;
@@ -271,8 +271,8 @@ public class SmartPlatform : MonoBehaviour
 	}
 	
 	private void digBottom(int x) {
-		Debug.Log("digBottom");
-		Debug.Log(x);
+		// Debug.Log("digBottom");
+		// Debug.Log(x);
 		if(reconstructive) {
 			Debug.Log("Reconstructive platforms not yet programmed");
 			return;
