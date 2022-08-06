@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/ActualSize.unity
-    guid: 99c136268fcfdf348b553ba97a1f465a
+    path: Assets/Scenes/L1_Desert_Pt1.unity
+    guid: 886aebeeadcf9438b9d706742de148fe
+  - enabled: 1
+    path: Assets/Scenes/L2_Diner_Pt2.unity
+    guid: a1183f028c28bc04c9060231a33575f0
+  - enabled: 1
+    path: Assets/Scenes/L3_DesertDig_Pt3.unity
+    guid: 1bd1728f37bab47e7b11cf510ccacbe5
   m_configObjects: {}
