@@ -3190,11 +3190,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 538544568270653560, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: m_Size.y
-      value: 0.55
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 538544568270653560, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: m_Offset.y
-      value: 0.325
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538544568270653560, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 538544568270653560, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 538544568270653560, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 538544568270653562, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: hpDisplay
@@ -3207,6 +3219,14 @@ PrefabInstance:
     - target: {fileID: 538544568270653563, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538544568270653563, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 538544568270653563, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 538544568270653563, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3248,6 +3268,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 538544568270653564, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1003453490, guid: 5d5e27fc11887f14ea37e1b63d7d95bc, type: 3}
+    - target: {fileID: 538544568270653565, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5778280fe62cd344ba29a47c27662dea, type: 2}
     - target: {fileID: 538544568270653566, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: m_Name
       value: Player
