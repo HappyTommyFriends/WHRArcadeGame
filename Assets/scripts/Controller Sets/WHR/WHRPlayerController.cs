@@ -13,6 +13,7 @@ public class WHRPlayerController : PlayerController {
 	public float digDistance = 0.02f;
 	public float digDuration = 0.3f;
 	public AudioClip jumpNoise;
+	public float height = 0.32f;
 	
 	bool _attacking = false;
 	float lastJump = 0;
@@ -60,7 +61,7 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	protected override void takeAction(string action) {
-		// Debug.Log("takeAction " + action);
+		Debug.Log("takeAction " + action);
 		lastAction = action;
 		
 		switch(action) {
@@ -317,7 +318,10 @@ public class WHRPlayerController : PlayerController {
 		Debug.DrawLine(rayStart, rayStart + directionVector() * digDistance); */
 		
 		
-		Debug.DrawLine(jumpCheckOrigin(), jumpCheckOrigin() + jumpCheckDirection() * 0.06f);
+		// Overhead jump check
+		// Debug.DrawLine(jumpCheckOrigin(), jumpCheckOrigin() + jumpCheckDirection() * 0.06f);
+		
+		Debug.DrawLine(groundedVectorStart(), groundedVectorEnd());
 		
 		if(horizontalSpeed != 0)
 			digIfApplicable();
@@ -447,8 +451,27 @@ public class WHRPlayerController : PlayerController {
 		if(rigidBody.velocity.y != 0)
 			return false;
 		
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, 0.02f));
+		// RaycastHit2D hit = Physics2D.Raycast(groundedVectorStart(), groundedVectorCast2D);
+		
+		RaycastHit2D hit = Physics2D.Raycast(groundedVectorStart(), Vector2.down, 0.02f);
         return (hit.collider != null);
+	}
+	
+	Vector3 groundedVectorStart() {
+		return transform.position - new Vector3(0, (height / 2) - 0.01f, 0);
+	}
+	
+	Vector2 groundedVectorCast2D() {
+		Vector3 v = groundedVectorCast();
+		return new Vector2(v.x, v.y);
+	}
+	
+	Vector3 groundedVectorCast() {
+		return new Vector3(0, 0.02f, 0);
+	}
+	
+	Vector3 groundedVectorEnd() {
+		return groundedVectorStart() + Vector3.down * 0.06f;
 	}
 	
 	void jump() {
