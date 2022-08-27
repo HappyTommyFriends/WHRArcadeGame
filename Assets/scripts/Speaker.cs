@@ -20,6 +20,8 @@ public class Speaker : MonoBehaviour
 	public float speakerHeight = 0.32f;
 	public float bottomLeftWidth = 0.25f;
 	public float bottomLeftHeight = 0.14f;
+	public float xOffset = -0.08f;
+	public float yOffset = -0.04f;
 	
 	public float letterWidth = 0.08f;
 	
@@ -32,22 +34,20 @@ public class Speaker : MonoBehaviour
 		
 		int lineCount = 1;
 		int totalWidth = alphabet.width(message);
-		int targetWidth = 100;
 		Debug.Log("totalWidth: " + totalWidth);
 		int estimatedLines = (int) Math.Ceiling(Math.Sqrt(totalWidth) / 10);
 		List<string> lines = alphabet.split(message, (totalWidth + 16) / estimatedLines);
 		lineCount = lines.Count;
 		int maxWidth = (int) (100 * (bottomLeftWidth - pieceWidth));
 		foreach(string line in lines) {
-			Debug.Log("line: " + line);
 			int lineWidth = alphabet.width(line);
 			if(lineWidth > maxWidth)
 				maxWidth = lineWidth;
 		}
 		Debug.Log("maxWidth: " + maxWidth);
 		
-		float startX = transform.position.x;
-		float startY = transform.position.y + 0.01f * lines.Count * alphabet.letterHeight + pieceHeight * 2 + speakerHeight + 0.02f;
+		float startX = transform.position.x + xOffset;
+		float startY = transform.position.y + yOffset + 0.01f * lines.Count * alphabet.letterHeight + pieceHeight * 2 + speakerHeight + 0.02f;
 		
 		float currentX = startX;
 		float currentY = startY;
@@ -86,15 +86,13 @@ public class Speaker : MonoBehaviour
 			currentX += pieceWidth / 2;
 			
 			string output = alphabet.alignCenter(line, maxWidth);
-			Debug.Log(output);
 			// Put the letters up there
 			foreach(char letter in output) {
 				int characterWidth = alphabet.letterWidth(letter.ToString());
-				Debug.Log("characterWidth(" + letter + "): " + characterWidth);
 				currentX += 0.005f * characterWidth;
-				// GameObject letterObject = alphabet.getLetter(letter);
-				// letterObject.transform.parent = transform;
-				// letterObject.transform.position = new Vector3(currentX, currentY, 0);
+				GameObject letterObject = alphabet.getLetter(letter);
+				letterObject.transform.parent = transform;
+				letterObject.transform.position = new Vector3(currentX, currentY, 0);
 				currentX += 0.005f * characterWidth;
 			}
 			//currentX += 0.01f * maxWidth;
@@ -130,22 +128,13 @@ public class Speaker : MonoBehaviour
 		piece = Instantiate(bottomRight, Vector3.zero, Quaternion.identity);
 		piece.transform.parent = transform;
 		piece.transform.position = new Vector3(currentX, currentY, 0);
-		
-		Debug.Log("targetWidth: " + targetWidth);
-		Debug.Log("lineCount: " + lineCount);
-		
-		totalWidth = 16;
-		int totalHeight = 16 + alphabet.letterHeight * lineCount;
-		
-		topLeft = Instantiate(topLeft, Vector3.zero, Quaternion.identity);
-		topLeft.transform.parent = transform;
 	}
 	
     void Start()
     {
 		alphabet = alphabetObject.GetComponent<Alphabet>();
-        // speak("If you’re looking for crazy stuff out here, ain’t nothing crazier than Old Joe.");
-		speak("Hi");
+        speak("If you’re looking for crazy stuff out here, ain’t nothing crazier than Old Joe.");
+		// speak("Hi");
     }
 	
     void Update()
