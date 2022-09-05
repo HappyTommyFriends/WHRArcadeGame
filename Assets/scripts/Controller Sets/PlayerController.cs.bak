@@ -87,8 +87,7 @@ public class PlayerController : MonoBehaviour
 		return presumedVelocity;
 	}
 	protected virtual float[] bounds() {
-		float[] b = { minX, maxX, minY, maxY };
-		return b;
+		float b = { minX, maxX, minY, maxY };
 	}
 	
 	protected virtual void takeAction(string action) {
