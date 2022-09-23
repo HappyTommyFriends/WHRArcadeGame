@@ -438,7 +438,7 @@ MonoBehaviour:
   interactionController: {fileID: 0}
   walkSpeed: 2
   height: 0.32
-  sceneController: {fileID: 0}
+  sceneController: {fileID: 2033799352}
   thirstTrigger: 10
   gulpsPerDrink: 3
   drinkDelay: 8
