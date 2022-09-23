@@ -24,12 +24,50 @@ public class PlayerController : MonoBehaviour
 	public IntentController intentController;
 	public InteractionController interactionController;
 	
+	protected bool movementFrozen = false;
+	protected float oldGravityScale;
+	protected string lastAction;
+	
     void Start()
     {
         animator = this.GetComponent<Animator>();
 		setStartingAnimationState();
 		rigidBody = GetComponent<Rigidbody2D>();
+		inheritedStart();
     }
+	
+	public void freezeMovement() {
+		Debug.Log("Freezing Movement");
+		horizontalSpeed = 0;
+		movementFrozen = true;
+		if(GetComponent<Rigidbody2D>().gravityScale != 0)
+			oldGravityScale = GetComponent<Rigidbody2D>().gravityScale;
+		GetComponent<Rigidbody2D>().gravityScale = 0;
+		
+		GetComponent<BoxCollider2D>().enabled = false;
+	}
+	
+	public void unfreezeMovement() {
+		Debug.Log("Unfreezing Movement");
+		movementFrozen = false;
+		GetComponent<Rigidbody2D>().gravityScale = oldGravityScale;
+		GetComponent<BoxCollider2D>().enabled = true;
+		maybeTakeLastAction();
+	}
+	
+	void maybeTakeLastAction() {
+		switch(lastAction) {
+			case "upRight":
+			case "upLeft":
+			case "up":
+				return;
+		}
+		takeAction(lastAction);
+	}
+	
+	protected virtual void inheritedStart() {
+		
+	}
 	
 	protected void setStartingAnimationState() {
 		_currentAnimationState = 0;
@@ -45,6 +83,8 @@ public class PlayerController : MonoBehaviour
 		}
 		enforceBounds();
 		rigidBody.velocity = new Vector2(horizontalSpeed, nextVerticalSpeed());
+		if(movementFrozen)
+			rigidBody.velocity = Vector2.zero;
     }
 	
 	protected void enforceBounds() {
@@ -86,6 +126,7 @@ public class PlayerController : MonoBehaviour
 		
 		return presumedVelocity;
 	}
+	
 	protected virtual float[] bounds() {
 		float[] b = { minX, maxX, minY, maxY };
 		return b;

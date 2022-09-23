@@ -16,14 +16,10 @@ public class WHRDinerPlayerController : PlayerController {
 	public AudioClip jumpNoise;
 	public float height = 0.32f;
 	public float isometricMultiplier = 0.4f;
-	public float maxY = 0.458f;
 	
 	bool _attacking = false;
 	float lastJump = 0;
 	Vector3 attackOrigin = new Vector3(0, 0.16f, 0);
-	bool movementFrozen = false;
-	float oldGravityScale;
-	string lastAction;
 	bool preCheckJumps = false;
 	AudioSource audioSource;
 

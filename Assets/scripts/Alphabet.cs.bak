@@ -90,6 +90,7 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case ".":
 			case "'":
 			case "’":
+			case "!":
 			case "i":
 			case "l":
 				return 1;
@@ -113,7 +114,9 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "F":
 			case "I":
 			case "O":
+			case "T":
 				return 3;
+			case "?":
 			case "b":
 			case "d":
 			case "e":
@@ -128,11 +131,15 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "G":
 			case "H":
 			case "J":
+			case "S":
 				return 4;
 			case "a":
 			case "m":
 			case "w":
 			case "A":
+			case "M":
+			case "N":
+			case "Y":
 				return 5;
 			default:
 				return 8;
@@ -210,7 +217,7 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 				continue;
 			
 			message = spacerCharacter().ToString() + message;
-			spaces;;
+			spaces--;
 		}
 		
 		Debug.Log(width(message));

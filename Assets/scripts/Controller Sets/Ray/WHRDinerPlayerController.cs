@@ -1,7 +1,8 @@
-using UnityEngine;
 using System.Collections;
- 
-public class WHRPlayerController : PlayerController {
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WHRDinerPlayerController : PlayerController {
     public float walkSpeed = 2;
 	public float jumpStrength = 180;
 	public float hp = 10;
@@ -14,21 +15,19 @@ public class WHRPlayerController : PlayerController {
 	public float digDuration = 0.3f;
 	public AudioClip jumpNoise;
 	public float height = 0.32f;
+	public float isometricMultiplier = 0.4f;
 	
 	bool _attacking = false;
 	float lastJump = 0;
 	Vector3 attackOrigin = new Vector3(0, 0.16f, 0);
-	bool movementFrozen = false;
-	float oldGravityScale;
-	string lastAction;
 	bool preCheckJumps = false;
 	AudioSource audioSource;
 
 	// Ghosts and Goblins
     const int STATE_IDLE = 0;
-    const int STATE_CLIMB_UP = 1;
+    const int STATE_WALK_UP = 1;
     const int STATE_WALK_RIGHT = 2;
-    const int STATE_CLIMB_DOWN = 3;
+    const int STATE_WALK_DOWN = 3;
     const int STATE_WALK_LEFT = 4;
 	const int STATE_ATTACK = 10;
 	const int STATE_ATTACK_UP = 11;
@@ -83,10 +82,11 @@ public class WHRPlayerController : PlayerController {
 				attemptAttackUp();
 				break;
 			case "down":
-				attemptDig();
+				walkDown();
 				break;
 			case "idle":
 				horizontalSpeed = 0;
+				verticalSpeed = 0;
 				idle();
 				break;
 			case "walkRight":
@@ -96,14 +96,14 @@ public class WHRPlayerController : PlayerController {
 				walkLeft();
 				break;
 			case "upRight":
-				jumpRight();
+				walkUpRight();
 				break;
 			case "up":
 				horizontalSpeed = 0;
-				attemptJump();
+				walkUp();
 				break;
 			case "upLeft":
-				jumpLeft();
+				walkUpLeft();
 				break;
 		}
 		
@@ -251,35 +251,6 @@ public class WHRPlayerController : PlayerController {
 		platform2.attemptDig(hit.point);
 	}
 	
-	void freezeMovement() {
-		Debug.Log("Freezing Movement");
-		horizontalSpeed = 0;
-		movementFrozen = true;
-		if(GetComponent<Rigidbody2D>().gravityScale != 0)
-			oldGravityScale = GetComponent<Rigidbody2D>().gravityScale;
-		GetComponent<Rigidbody2D>().gravityScale = 0;
-		
-		GetComponent<BoxCollider2D>().enabled = false;
-	}
-	
-	void unfreezeMovement() {
-		Debug.Log("Unfreezing Movement");
-		movementFrozen = false;
-		GetComponent<Rigidbody2D>().gravityScale = oldGravityScale;
-		GetComponent<BoxCollider2D>().enabled = true;
-		maybeTakeLastAction();
-	}
-	
-	void maybeTakeLastAction() {
-		switch(lastAction) {
-			case "upRight":
-			case "upLeft":
-			case "up":
-				return;
-		}
-		takeAction(lastAction);
-	}
-	
 	void attemptDig() {
 		Debug.Log("attemptDig");
 		if(!canDig())
@@ -372,7 +343,7 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void attackDown() {
-		changeState(STATE_ATTACK_DOWN);
+		// changeState(STATE_ATTACK_DOWN);
 		executeAttack(Vector3.down);
 	}
 	
@@ -389,21 +360,21 @@ public class WHRPlayerController : PlayerController {
 		Debug.Log("handleAttackConnect");
 		Debug.Log(collider);
 		Debug.Log(collider.GetComponent<InteractionController>());
-		collider.GetComponent<InteractionController>().interact(Interaction.basicAttack(this.gameObject, attackPower));
+		// collider.GetComponent<InteractionController>().interact(Interaction.basicAttack(this.gameObject, attackPower));
 	}
 	
 	void attackLeft() {
-		changeState(STATE_ATTACK_LEFT);
+		// changeState(STATE_ATTACK_LEFT);
 		executeAttack(Vector3.left);
 	}
 	
 	void attackRight() {
-		changeState(STATE_ATTACK_RIGHT);
+		// changeState(STATE_ATTACK_RIGHT);
 		executeAttack(Vector3.right);
 	}
 	
 	void attackUp() {
-		changeState(STATE_ATTACK_UP);
+		// changeState(STATE_ATTACK_UP);
 		executeAttack(Vector3.up);
 	}
 	
@@ -420,15 +391,47 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void walkRight() {
+		verticalSpeed = 0;
 		_currentDirection = "right";
 		horizontalSpeed = walkSpeed;
 		changeState(STATE_WALK_RIGHT);
 	}
 	
 	void walkLeft() {
+		verticalSpeed = 0;
 		_currentDirection = "left";
 		horizontalSpeed = -walkSpeed;
 		changeState(STATE_WALK_LEFT);
+	}
+	
+	void walkUp() {
+		horizontalSpeed = 0;
+		_currentDirection = "up";
+		verticalSpeed = walkSpeed * isometricMultiplier;
+		changeState(STATE_WALK_UP);
+	}
+	
+	void walkDown() {
+		horizontalSpeed = 0;
+		_currentDirection = "up";
+		verticalSpeed = -walkSpeed * isometricMultiplier;
+		changeState(STATE_WALK_DOWN);
+	}
+	
+	void walkUpRight() {
+		
+	}
+	
+	void walkUpLeft() {
+		
+	}
+	
+	void walkDownRight() {
+		
+	}
+	
+	void walkDownLeft() {
+		
 	}
 	
 	void idle() {
