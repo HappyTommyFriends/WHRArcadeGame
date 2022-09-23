@@ -23,6 +23,20 @@ public class SceneController : MonoBehaviour
 		Invoke("fadeIn3", fadeIterationDelay);
 	}
 	
+	public void fadeIn3() {
+		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,0.5f);
+		Invoke("fadeIn4", fadeIterationDelay);
+	}
+	
+	public void fadeIn4() {
+		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,0.25f);
+		Invoke("fadeIn5", fadeIterationDelay);
+	}
+	
+	public void fadeIn5() {
+		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,0f);
+	}
+	
 	public void transitionTo(string sceneParameter) {
 		Debug.Log("SceneController.transitionTo: " + sceneParameter);
 		lastQueuedSceneParameter = sceneParameter;
@@ -64,6 +78,9 @@ public class SceneController : MonoBehaviour
 		switch(parameter) {
 			case "Desert 1":
 				SceneManager.LoadScene(0);
+				break;
+			case "Diner":
+				SceneManager.LoadScene(1);
 				break;
 			case "Desert 2":
 				SceneManager.LoadScene(2);
