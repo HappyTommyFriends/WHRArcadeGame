@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ac0b1b197aedf14f82bf6369ae7b018
+guid: 260ae8eaa75aa814895249641e5635c6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -100,23 +100,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ray_Walk_Left 1.2-Sheet_0
+      name: Ray_Jump_Right-sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d0412e15f901474990dba72d3b13568
-      internalID: 1673498341
+      spriteID: d3e6e2b2b9a021c4893dfaee6b000a0d
+      internalID: 1327938348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ray_Walk_Left 1.2-Sheet_1
+      name: Ray_Jump_Right-sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -151,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75b22f0f72551c54ebe1c463c0dcfd2d
-      internalID: -1124747914
+      spriteID: c9320e17b399db74cb07e4933175f9a9
+      internalID: 647895160
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ray_Walk_Left 1.2-Sheet_2
+      name: Ray_Jump_Right-sheet_2
       rect:
         serializedVersion: 2
         x: 64
@@ -172,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9d415c89db81c34984cb3d7d9d84aba
-      internalID: -342329005
+      spriteID: 547b0f27572c40f4b8c0c552036bed96
+      internalID: -1866253037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ray_Walk_Left 1.2-Sheet_3
+      name: Ray_Jump_Right-sheet_3
       rect:
         serializedVersion: 2
         x: 96
@@ -193,8 +181,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bdb0b6fa4a40c943b3eb9a752724e5d
-      internalID: 1949534909
+      spriteID: ebee34261458d7a40aa183d7b7f5878e
+      internalID: -995962332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ray_Jump_Right-sheet_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b109e57a6704c78429cf2488cdff8923
+      internalID: -984743033
       vertices: []
       indices: 
       edges: []
@@ -210,10 +219,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ray_Walk_Left 1.2-Sheet_2: -342329005
-      Ray_Walk_Left 1.2-Sheet_1: -1124747914
-      Ray_Walk_Left 1.2-Sheet_3: 1949534909
-      Ray_Walk_Left 1.2-Sheet_0: 1673498341
+      Ray_Jump_Right-sheet_1: 647895160
+      Ray_Jump_Right-sheet_2: -1866253037
+      Ray_Jump_Right-sheet_0: 1327938348
+      Ray_Jump_Right-sheet_4: -984743033
+      Ray_Jump_Right-sheet_3: -995962332
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -50,6 +50,10 @@ public class WHRPlayerController : PlayerController {
 	const int STATE_SMALL_IDLE = 61;
 	const int STATE_MEDIUM_IDLE = 62;
 	const int STATE_BIG_IDLE = 63;
+	const int STATE_DIG_UP = 71;
+	const int STATE_DIG_RIGHT = 72;
+	const int STATE_DIG_DOWN = 73;
+	const int STATE_DIG_LEFT = 74;
 	
 	new void setStartingAnimationState() {
 		Debug.Log("setStartingAnimationState");
@@ -186,6 +190,7 @@ public class WHRPlayerController : PlayerController {
 		
 		RaycastHit2D hit = Physics2D.Raycast(rayStart, directionVector(), digDistance);
         if(hit.collider != null) {
+			changeToDigState();
 			SmartPlatform platform = hit.collider.gameObject.GetComponent<SmartPlatform>();
 			if(platform != null && platform.diggable) {
 				platform.attemptDig(hit.point);
@@ -264,6 +269,7 @@ public class WHRPlayerController : PlayerController {
         if(hit.collider == null)
 			return;
 		
+		changeState(STATE_DIG_DOWN);
 		Debug.Log(hit.collider);
 		Debug.Log(hit.collider.name);
 		if(hit.collider.gameObject.name == "Platform") {
@@ -480,6 +486,38 @@ public class WHRPlayerController : PlayerController {
 				return STATE_JUMP;
 		}
 	}
+	
+	void changeToDamageState() {
+		changeState(damageState());
+	}
+	
+	int damageState() {
+		switch (_currentDirection) {
+			case "right":
+				return STATE_DAMAGE_RIGHT;
+			case "left":
+				return STATE_DAMAGE_LEFT;
+			default:
+				return STATE_DAMAGE_RIGHT;
+		}
+	}
+	
+	void changeToDigState() {
+		changeState(digState());
+	}
+	
+	int digState() {
+		switch (_currentDirection) {
+			case "right":
+				return STATE_DIG_RIGHT;
+			case "left":
+				return STATE_DIG_LEFT;
+			case "down":
+				return STATE_DIG_DOWN;
+			default:
+				return STATE_DIG_DOWN;
+		}
+	}
  
     //--------------------------------------
     // Change the players animation state
@@ -515,6 +553,7 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	public void damage(float amount) {
+		changeToDamageState();
 		hp -= amount;
 		if(hp <= 0) {
 			die();

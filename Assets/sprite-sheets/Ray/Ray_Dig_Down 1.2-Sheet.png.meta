@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -546,8 +546,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ray_Dig_Down 1.2-Sheet_16: -1665150717
-      Ray_Dig_Down 1.2-Sheet_12: 931283991
+      Ray_Dig_Down 1.2-Sheet_4: -1029450278
+      Ray_Dig_Down 1.2-Sheet_7: 1409862143
       Ray_Dig_Down 1.2-Sheet_0: -450288224
       Ray_Dig_Down 1.2-Sheet_6: -1636752883
       Ray_Dig_Down 1.2-Sheet_5: -407434911
@@ -564,8 +564,8 @@ TextureImporter:
       Ray_Dig_Down 1.2-Sheet_2: 966376200
       Ray_Dig_Down 1.2-Sheet_15: 1808114923
       Ray_Dig_Down 1.2-Sheet_10: 1254682451
-      Ray_Dig_Down 1.2-Sheet_4: -1029450278
-      Ray_Dig_Down 1.2-Sheet_7: 1409862143
+      Ray_Dig_Down 1.2-Sheet_12: 931283991
+      Ray_Dig_Down 1.2-Sheet_16: -1665150717
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
