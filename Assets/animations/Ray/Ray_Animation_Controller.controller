@@ -29,8 +29,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ray_Attack_Right 1_2
-  m_Speed: 1
+  m_Name: Attack Right Short
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6947336654544649350}
@@ -44,7 +44,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 56043ef5b7cee0745bfd76909f864925, type: 2}
+  m_Motion: {fileID: 7400000, guid: df2a3323f620c7f4d8627d9201f316f4, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1039,8 +1039,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ray_Attack_Left 1_2
-  m_Speed: 1
+  m_Name: Attack Left Short
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8149286704456025157}
@@ -1054,7 +1054,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bda6c2c6976e25f42a4fd65949250f6b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 08ec428101876734eb913c3186d7aeb4, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1080,7 +1080,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.05019597
   m_TransitionOffset: 0
   m_ExitTime: 8.948069e-10
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
