@@ -17,7 +17,7 @@ public class WHRPlayerController : PlayerController {
 	
 	bool _attacking = false;
 	float lastJump = 0;
-	Vector3 attackOrigin = new Vector3(0, 0.16f, 0);
+	Vector3 attackOrigin = new Vector3(0, 0, 0);
 	bool preCheckJumps = false;
 	AudioSource audioSource;
 
@@ -296,6 +296,7 @@ public class WHRPlayerController : PlayerController {
 		// Debug.DrawLine(jumpCheckOrigin(), jumpCheckOrigin() + jumpCheckDirection() * 0.06f);
 		
 		Debug.DrawLine(groundedVectorStart(), groundedVectorEnd());
+		Debug.DrawLine(transform.position + attackOrigin, transform.position + attackOrigin + Vector3.right.normalized * attackRange);
 		
 		if(horizontalSpeed != 0)
 			digIfApplicable();

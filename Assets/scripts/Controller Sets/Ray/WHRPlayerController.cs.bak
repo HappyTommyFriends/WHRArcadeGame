@@ -296,6 +296,7 @@ public class WHRPlayerController : PlayerController {
 		// Debug.DrawLine(jumpCheckOrigin(), jumpCheckOrigin() + jumpCheckDirection() * 0.06f);
 		
 		Debug.DrawLine(groundedVectorStart(), groundedVectorEnd());
+		Debug.DrawLine(transform.position + attackOrigin, transform.position + attackOrigin + Vector3.right.normalized * attackRange);
 		
 		if(horizontalSpeed != 0)
 			digIfApplicable();
@@ -512,7 +513,7 @@ public class WHRPlayerController : PlayerController {
 				return STATE_DIG_RIGHT;
 			case "left":
 				return STATE_DIG_LEFT;
-			case "down"
+			case "down":
 				return STATE_DIG_DOWN;
 			default:
 				return STATE_DIG_DOWN;

@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -1321,26 +1321,26 @@ TextureImporter:
       Snake Master Sprite Sheet_0: 100149879
       Snake Master Sprite Sheet_45: 1435869186
       Snake Master Sprite Sheet_32: -1171232742
-      Snake Master Sprite Sheet_29: 769285284
       Snake Master Sprite Sheet_10: -1390299843
       Snake Master Sprite Sheet_20: -774514784
+      Snake Master Sprite Sheet_22: -1114847685
       Snake Master Sprite Sheet_30: 2040214406
       Snake Master Sprite Sheet_19: -1905820743
+      Snake Master Sprite Sheet_29: 769285284
       Snake Master Sprite Sheet_21: 1951965599
       Snake Master Sprite Sheet_34: -292799360
       Snake Master Sprite Sheet_35: 151476514
       Snake Master Sprite Sheet_23: 1965514385
-      Snake Master Sprite Sheet_22: -1114847685
       Snake Master Sprite Sheet_17: 1696904603
       Snake Master Sprite Sheet_14: 126356924
       Snake Master Sprite Sheet_13: 840139556
       Snake Master Sprite Sheet_12: -1537719031
       Snake Master Sprite Sheet_28: -1573332392
       Snake Master Sprite Sheet_33: 903915489
-      Snake Master Sprite Sheet_43: 163622097
+      Snake Master Sprite Sheet_55: 729417386
       Snake Master Sprite Sheet_16: 1915967489
       Snake Master Sprite Sheet_1: 120986209
-      Snake Master Sprite Sheet_55: 729417386
+      Snake Master Sprite Sheet_43: 163622097
       Snake Master Sprite Sheet_24: 1109872921
       Snake Master Sprite Sheet_54: -710977035
       Snake Master Sprite Sheet_8: 936272186
