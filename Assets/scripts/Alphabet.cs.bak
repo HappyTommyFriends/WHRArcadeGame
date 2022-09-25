@@ -113,7 +113,6 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "E":
 			case "F":
 			case "I":
-			case "O":
 				return 3;
 			case "?":
 			case "b":
@@ -131,6 +130,7 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "H":
 			case "J":
 			case "K":
+			case "O":
 			case "S":
 				return 4;
 			case "a":
