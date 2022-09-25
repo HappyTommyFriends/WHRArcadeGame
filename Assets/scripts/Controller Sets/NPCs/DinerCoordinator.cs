@@ -51,6 +51,7 @@ public class DinerCoordinator : MonoBehaviour
 		if(servingDrink)
 			return;
 		
+		cup.transform.position = startingCupPosition;
 		servingDrink = true;
 		cup.SetActive(true);
 		Invoke("serveDrink", 0.7f);
