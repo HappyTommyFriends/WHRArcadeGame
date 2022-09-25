@@ -266,7 +266,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 538544568270653562, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+    - {fileID: 538544567738745674, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+--- !u!1 &299684989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 538544567738745675, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+  m_PrefabInstance: {fileID: 299684988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &299684990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299684989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5e5147bae9278469de1ba5de8f184f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &309159013 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 538544567778761708, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
@@ -287,17 +305,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c08a04453fdf4a469c9669c6f8847ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &545164627 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 538544567738745674, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
-  m_PrefabInstance: {fileID: 299684988}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 033d8ae33dc7bfb4cae8597d01574b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &588358391
@@ -991,7 +998,7 @@ MonoBehaviour:
   maxY: 0.458
   animator: {fileID: 0}
   actionController: {fileID: 309159013}
-  intentController: {fileID: 545164627}
+  intentController: {fileID: 299684990}
   interactionController: {fileID: 403380333}
   walkSpeed: 1
   jumpStrength: 180

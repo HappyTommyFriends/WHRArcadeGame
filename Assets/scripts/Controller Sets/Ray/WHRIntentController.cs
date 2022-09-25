@@ -16,7 +16,7 @@ public class WHRIntentController : IntentController
 	}
 		
 	private string directionOnly(float h, float v) {
-		if(v > 0) {
+		if(Input.GetButtonDown("Jump")) {
 			if(h < 0)
 				return "upLeft";
 			
