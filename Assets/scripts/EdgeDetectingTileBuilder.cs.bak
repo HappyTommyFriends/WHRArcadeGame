@@ -78,9 +78,9 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 		Debug.Log("My builderType is " + builderType);
 		Debug.Log(transform.position);
 		if(snapYPosition)
-			transform.position = new Vector3(transform.position.x, (float) (Math.Round(transform.position.y * 2f / tileWidth) * tileWidth / 2), transform.position.z);
+			transform.position = new Vector3(transform.position.x, (float) (Math.Round(transform.position.y / tileWidth) * tileWidth), transform.position.z);
 		if(snapXPosition)
-			transform.position = new Vector3((float) (Math.Round(transform.position.x * 2f / tileWidth) * tileWidth / 2), transform.position.y, transform.position.z);
+			transform.position = new Vector3((float) (Math.Round(transform.position.x / tileWidth) * tileWidth), transform.position.y, transform.position.z);
 		Debug.Log(transform.position);
         x = (int) Math.Round(transform.position.x / tileWidth);
 		y = (int) Math.Round(transform.position.y / tileHeight);

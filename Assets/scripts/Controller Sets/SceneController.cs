@@ -14,7 +14,7 @@ public class SceneController : MonoBehaviour
 	
 	public void Start() {
 		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,1f);
-		fadeOverlay.transform.position = new Vector3(0, 1f, -1f);
+		fadeOverlay.transform.localPosition = new Vector3(0, 1f, 1f);
 		Invoke("fadeIn2", fadeIterationDelay);
 	}
 	

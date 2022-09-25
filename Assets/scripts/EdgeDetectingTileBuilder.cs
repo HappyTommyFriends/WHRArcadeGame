@@ -42,16 +42,16 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 			tileBuilders[type].Add(builder.x, new Dictionary<int, GameObject>());
 		tileBuilders[type][builder.x].Add(builder.y, builder.gameObject);
 		
-		logTileBuilders();
+		// logTileBuilders();
 	}
 	
 	static bool tileAt(string builderType, int x, int y) {
-		Debug.Log("tileAt(" + builderType + ", " + x + ", " + y + ")");
-		Debug.Log(tileBuilders[builderType].ContainsKey(x));
+		// Debug.Log("tileAt(" + builderType + ", " + x + ", " + y + ")");
+		// Debug.Log(tileBuilders[builderType].ContainsKey(x));
 		if(!tileBuilders[builderType].ContainsKey(x))
 			return false;
 		
-		Debug.Log(tileBuilders[builderType][x].ContainsKey(y));
+		// Debug.Log(tileBuilders[builderType][x].ContainsKey(y));
 		return tileBuilders[builderType][x].ContainsKey(y);
 	}
 	
@@ -75,16 +75,16 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		Debug.Log("My builderType is " + builderType);
-		Debug.Log(transform.position);
+		// Debug.Log("My builderType is " + builderType);
+		// Debug.Log(transform.position);
 		if(snapYPosition)
 			transform.position = new Vector3(transform.position.x, (float) (Math.Round(transform.position.y / tileWidth) * tileWidth), transform.position.z);
 		if(snapXPosition)
 			transform.position = new Vector3((float) (Math.Round(transform.position.x / tileWidth) * tileWidth), transform.position.y, transform.position.z);
-		Debug.Log(transform.position);
+		// Debug.Log(transform.position);
         x = (int) Math.Round(transform.position.x / tileWidth);
 		y = (int) Math.Round(transform.position.y / tileHeight);
-		Debug.Log(x + ", " + y);
+		// Debug.Log(x + ", " + y);
 		register(this);
 		Invoke("configure", 0.1f);
     }
@@ -100,7 +100,7 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 			adjacentConfiguration += 4;
 		if(tileOnLeft())
 			adjacentConfiguration += 8;
-		Debug.Log("adjacentConfiguration: " + adjacentConfiguration);
+		// Debug.Log("adjacentConfiguration: " + adjacentConfiguration);
 		GameObject prefab = null;
 		switch(adjacentConfiguration) {
 			case 0:
