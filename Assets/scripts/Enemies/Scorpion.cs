@@ -11,6 +11,12 @@ public class Scorpion : MonoBehaviour
 	public float hp = 8;
 	public WHRPlayerController player;
 	
+	public AudioClip clawAttack;
+	public AudioClip tailAttack;
+	public AudioClip jab;
+	public AudioClip charge;
+	public AudioClip shuffleNoise;
+	
 	protected Animator animator;
 	protected Rigidbody2D rigidBody;
 	
@@ -98,19 +104,23 @@ public class Scorpion : MonoBehaviour
 	}
 	
 	void leftJab() {
+		playSound(jab);
 		setState(24);
 	}
 	
 	void leftSnap() {
+		playSound(clawAttack);
 		setState(34);
 		attackFacing(2);
 	}
 	
 	void rightJab() {
+		playSound(jab);
 		setState(22);
 	}
 	
 	void rightSnap() {
+		playSound(clawAttack);
 		setState(32);
 		attackFacing(2);
 	}
@@ -174,6 +184,7 @@ public class Scorpion : MonoBehaviour
 	}
 	
 	void actualTailStrike() {
+		playSound(tailAttack);
 		setState(33);
 		if(playerOnTop()) {
 			player.jumpLeft();
@@ -206,6 +217,7 @@ public class Scorpion : MonoBehaviour
 	}
 	
 	void shuffle() {
+		playSound(shuffleNoise);
 		setState(0);
 		freeStyle = false;
 		smoothMoving = false;
@@ -320,5 +332,9 @@ public class Scorpion : MonoBehaviour
             Destroy(joint);
 			
 		rigidBody.AddForce(new Vector2(0, 750f));
+	}
+	
+	void playSound(AudioClip clip) {
+		GetComponent<AudioSource>().PlayOneShot(clip);
 	}
 }
