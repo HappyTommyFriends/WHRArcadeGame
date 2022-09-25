@@ -127,6 +127,10 @@ public class PlayerController : MonoBehaviour
 		return presumedVelocity;
 	}
 	
+	public void AddForce(float x, float y) {
+		rigidBody.AddForce(new Vector2(x, y));
+	}
+	
 	protected virtual float[] bounds() {
 		float[] b = { minX, maxX, minY, maxY };
 		return b;

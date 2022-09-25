@@ -14,6 +14,7 @@ public class WHRPlayerController : PlayerController {
 	public float digDuration = 0.3f;
 	public AudioClip jumpNoise;
 	public float height = 0.32f;
+	public Scorpion scorpion;
 	
 	bool _attacking = false;
 	float lastJump = 0;
@@ -367,9 +368,14 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void handleAttackConnect(Collider2D collider) {
-		Debug.Log("handleAttackConnect");
-		Debug.Log(collider);
-		Debug.Log(collider.GetComponent<InteractionController>());
+		// Debug.Log("handleAttackConnect");
+		// Debug.Log(collider);
+		// Debug.Log(collider.name + " :: " + scorpion.name);
+		if(collider.name == scorpion.name) {
+			scorpion.damage(1f);
+			return;
+		}
+		// Debug.Log(collider.GetComponent<InteractionController>());
 		collider.GetComponent<InteractionController>().interact(Interaction.basicAttack(this.gameObject, attackPower));
 	}
 	
@@ -388,7 +394,7 @@ public class WHRPlayerController : PlayerController {
 		executeAttack(Vector3.up);
 	}
 	
-	void jumpLeft() {
+	public void jumpLeft() {
 		horizontalSpeed = -walkSpeed;
 		_currentDirection = "left";
 		attemptJump();
@@ -398,6 +404,10 @@ public class WHRPlayerController : PlayerController {
 		horizontalSpeed = walkSpeed;
 		_currentDirection = "right";
 		attemptJump();
+	}
+	
+	public void faceRight() {
+		_currentDirection = "right";
 	}
 	
 	void walkRight() {

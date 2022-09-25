@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 		enforceBounds();
 		rigidBody.velocity = new Vector2(horizontalSpeed, nextVerticalSpeed());
 		if(movementFrozen)
-			rigidBody.velocity = new Vector2.zero;
+			rigidBody.velocity = Vector2.zero;
     }
 	
 	protected void enforceBounds() {
@@ -125,6 +125,10 @@ public class PlayerController : MonoBehaviour
 		}
 		
 		return presumedVelocity;
+	}
+	
+	public AddForce(float x, float y) {
+		rigidBody.AddForce(new Vector2(x, y));
 	}
 	
 	protected virtual float[] bounds() {
