@@ -63,7 +63,7 @@ public class DinerCoordinator : MonoBehaviour
 	}
 	
 	void finishDrinkServe() {
-		cup.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		stopDrink();
 		Invoke("joeReceiveDrink", 0.5f);
 	}
 	
@@ -74,7 +74,7 @@ public class DinerCoordinator : MonoBehaviour
 	}
 	
 	void stopDrink() {
-		
+		cup.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 	}
 	
 	void hideDrink() {
