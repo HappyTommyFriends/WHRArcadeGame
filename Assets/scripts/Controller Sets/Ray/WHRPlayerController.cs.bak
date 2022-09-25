@@ -13,6 +13,8 @@ public class WHRPlayerController : PlayerController {
 	public float digDistance = 0.02f;
 	public float digDuration = 0.3f;
 	public AudioClip jumpNoise;
+	public AudioClip shovelHit;
+	public AudioClip shovelDig;
 	public float height = 0.32f;
 	public Scorpion scorpion;
 	
@@ -274,6 +276,7 @@ public class WHRPlayerController : PlayerController {
 		Debug.Log(hit.collider);
 		Debug.Log(hit.collider.name);
 		if(hit.collider.gameObject.name == "Platform") {
+			playSound(shovelDig);
 			SmartPlatform platform = hit.collider.gameObject.GetComponent<SmartPlatform>();
 			if(platform == null)
 				return;
@@ -359,6 +362,7 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void executeAttack(Vector3 direction) {
+		playSound(shovelHit);
 		if(grounded())
 			horizontalSpeed = 0;
 		// Debug.DrawLine(transform.position + attackOrigin, transform.position + attackOrigin + direction.normalized * attackRange);
@@ -368,14 +372,14 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void handleAttackConnect(Collider2D collider) {
-		Debug.Log("handleAttackConnect");
-		Debug.Log(collider);
-		Debug.Log(collider.name + " :: " + scorpion.name);
+		// Debug.Log("handleAttackConnect");
+		// Debug.Log(collider);
+		// Debug.Log(collider.name + " :: " + scorpion.name);
 		if(collider.name == scorpion.name) {
 			scorpion.damage(1f);
 			return;
 		}
-		Debug.Log(collider.GetComponent<InteractionController>());
+		// Debug.Log(collider.GetComponent<InteractionController>());
 		collider.GetComponent<InteractionController>().interact(Interaction.basicAttack(this.gameObject, attackPower));
 	}
 	
@@ -469,12 +473,18 @@ public class WHRPlayerController : PlayerController {
 		if(preCheckJumps && !preJumpCheck())
 			return;
 		
-		GetComponent<AudioSource>().PlayOneShot(jumpNoise);
+		Debug.Log("jumpNoise:");
+		Debug.Log(jumpNoise);
+		playSound(jumpNoise);
 		rigidBody.AddForce(new Vector2(0, jumpStrength));
 		changeState(jumpState());
 		lastJump = Time.realtimeSinceStartup;
 		
 		preCheckJumps = false;
+	}
+	
+	void playSound(AudioClip clip) {
+		GetComponent<AudioSource>().PlayOneShot(clip);
 	}
 	
 	bool preJumpCheck() {
