@@ -109,6 +109,7 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "v":
 			case "x":
 			case "y":
+			case "z":
 			case "D":
 			case "E":
 			case "F":
@@ -123,7 +124,6 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "h":
 			case "q":
 			case "u":
-			case "z":
 			case "B":
 			case "C":
 			case "G":
