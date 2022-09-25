@@ -17,7 +17,7 @@ public class WHRPlayerController : PlayerController {
 	
 	bool _attacking = false;
 	float lastJump = 0;
-	Vector3 attackOrigin = new Vector3(0, 0.16f, 0);
+	Vector3 attackOrigin = new Vector3(0, 0, 0);
 	bool preCheckJumps = false;
 	AudioSource audioSource;
 
@@ -135,9 +135,9 @@ public class WHRPlayerController : PlayerController {
 			case "down":
 				return new Vector2(0, -digOffset);
 			case "left":
-				return new Vector2(-digOffset, 0.08f);
+				return new Vector2(-0.05f, 0.08f);
 			case "right":
-				return new Vector2(digOffset, 0.08f);
+				return new Vector2(0.05f, 0.08f);
 			case "up":
 				return new Vector2(0, digOffset);
 		}
@@ -291,19 +291,25 @@ public class WHRPlayerController : PlayerController {
 		Debug.Log(directionVector() * digDistance);
 		Debug.DrawLine(rayStart, rayStart + directionVector() * digDistance); */
 		
+		// Side Digging
+		Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digStartVector();
+		Debug.DrawLine(rayStart, rayStart + directionVector() * digDistance);
 		
 		// Overhead jump check
 		// Debug.DrawLine(jumpCheckOrigin(), jumpCheckOrigin() + jumpCheckDirection() * 0.06f);
 		
-		Debug.DrawLine(groundedVectorStart(), groundedVectorEnd());
-		Debug.DrawLine(transform.position + attackOrigin, transform.position + attackOrigin + Vector3.right.normalized * attackRange);
+		// Debug.DrawLine(groundedVectorStart(), groundedVectorEnd());
+		// Debug.DrawLine(transform.position + attackOrigin, transform.position + attackOrigin + Vector3.right.normalized * attackRange);
 		
+		// Down Digging
+		// Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digOffsetVector();
+		// Debug.DrawLine(rayStart, rayStart + Vector2.down.normalized * digDistance);
 		if(horizontalSpeed != 0)
 			digIfApplicable();
 	}
 	
 	Vector2 digOffsetVector() {
-		return new Vector2(0, digOffset);
+		return new Vector2(0, -digOffset);
 	}
 	
 	bool canDig() {
