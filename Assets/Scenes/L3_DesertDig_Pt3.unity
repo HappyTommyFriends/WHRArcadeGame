@@ -2150,7 +2150,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.507
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2250,6 +2250,7 @@ MonoBehaviour:
   bossTrack: {fileID: 8300000, guid: d8c7c2cec59f0dd42bac86200a8ab0f5, type: 3}
   caveCutoff: -2.9
   bossCutoff: 10.8
+  scorpion: {fileID: 1597769018}
 --- !u!4 &375121855
 Transform:
   m_ObjectHideFlags: 0
@@ -3704,7 +3705,7 @@ PrefabInstance:
     - target: {fileID: 538544568270653562, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: intentController
       value: 
-      objectReference: {fileID: 585968400}
+      objectReference: {fileID: 585968402}
     - target: {fileID: 538544568270653563, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3719,11 +3720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 538544568270653563, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.385
+      value: 11.41
       objectReference: {fileID: 0}
     - target: {fileID: 538544568270653563, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.053
+      value: -4.68
       objectReference: {fileID: 0}
     - target: {fileID: 538544568270653563, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3769,8 +3770,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 538544567738745674, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
 --- !u!1 &585968397 stripped
 GameObject:
@@ -3788,21 +3788,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68178769b0cd1ef43b7d53fca4ec97bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &585968399 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 538544567738745675, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+--- !u!114 &585968402 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 538544567738745674, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
   m_PrefabInstance: {fileID: 585968396}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &585968400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585968399}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc5e5147bae9278469de1ba5de8f184f, type: 3}
+  m_Script: {fileID: 11500000, guid: 033d8ae33dc7bfb4cae8597d01574b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &585968404
@@ -8606,7 +8600,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0.5

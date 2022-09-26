@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/L1_Desert_Pt1.unity
     guid: 886aebeeadcf9438b9d706742de148fe
   - enabled: 1

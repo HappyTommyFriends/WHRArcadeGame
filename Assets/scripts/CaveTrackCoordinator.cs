@@ -12,6 +12,8 @@ public class CaveTrackCoordinator : MonoBehaviour
 	public float caveCutoff;
 	public float bossCutoff;
 	
+	public Scorpion scorpion;
+	
 	AudioSource source;
 	int state = 0;
 	
@@ -25,7 +27,7 @@ public class CaveTrackCoordinator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(state == 2)
+		if(state == 3)
 			return;
 		
 		if(state == 0) {
@@ -36,9 +38,17 @@ public class CaveTrackCoordinator : MonoBehaviour
 			return;
 		}
 			
-		if(player.transform.position.x > bossCutoff) {
+		if(state == 1 && player.transform.position.x > bossCutoff) {
 			playTrack(bossTrack);
 			state = 2;
+			// This doesn't belong here but cutting some corners in crunch time.
+			scorpion.activate();
+			return;
+		}
+		
+		if(state == 2 && scorpion.isDead()) {
+			playTrack(caveTrack);
+			state = 3;
 		}
     }
 	

@@ -31,6 +31,7 @@ public class Scorpion : MonoBehaviour
 	bool nextLeft = true;
 	bool motionFrozen = false;
 	bool dead = false;
+	bool active = false;
 	
     // Start is called before the first frame update
     void Start()
@@ -39,8 +40,13 @@ public class Scorpion : MonoBehaviour
 		animator.SetInteger("state", 0);
 		rigidBody = GetComponent<Rigidbody2D>();
 		// Invoke("die", 1.2f);
-		Invoke("InvokePattern", 4f);
+		// Invoke("InvokePattern", 4f);
     }
+	
+	public void activate() {
+		active = true;
+		InvokePattern();
+	}
 	
 	void free() {
 		freeStyle = true;
@@ -157,7 +163,7 @@ public class Scorpion : MonoBehaviour
 		Debug.Log("attack2");
 		setState(14);
 		smoothMoving = false;
-		rigidBody.AddForce(new Vector2(-500f, 750f));
+		rigidBody.AddForce(new Vector2(-5000f, 7500f));
 		Invoke("attack2b", 0.5f);
 	}
 	
@@ -288,7 +294,7 @@ public class Scorpion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(dead)
+		if(!active || dead)
 			return;
 		
 		if(freeStyle) {
@@ -319,7 +325,9 @@ public class Scorpion : MonoBehaviour
 	}
 	
 	void die() {
+		CancelInvoke();
 		dead = true;
+		active = false;
 		transform.position = new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z);
 		transform.localRotation = Quaternion.Euler(180, 0, 0);
 		// Destroy(GetComponent<BoxCollider2D>());
@@ -336,5 +344,9 @@ public class Scorpion : MonoBehaviour
 	
 	void playSound(AudioClip clip) {
 		GetComponent<AudioSource>().PlayOneShot(clip);
+	}
+	
+	public bool isDead() {
+		return dead;
 	}
 }
