@@ -421,7 +421,7 @@ public class SmartPlatform : MonoBehaviour
 		platform.leftSplit = true;
 		
 		float rightWidth = (float) (width - x - 1);
-		platformGameobject = Instantiate(smartPlatformPrefab, topRight() + new Vector3(-rightWidth * tileWidth / 2, -tileHeight / 2, 0), Quaternion.identity);
+		platformGameobject = Instantiate(smartPlatformPrefab, topRight() + new Vector3(-rightWidth * tileWidth / 2, -tileHeight / 2, transform.position.z), Quaternion.identity);
 		platformGameobject.name = "Platform";
 		platform = platformGameobject.GetComponent<SmartPlatform>();
 		platform.transform.localScale = new Vector3(rightWidth, 1f, 1f);

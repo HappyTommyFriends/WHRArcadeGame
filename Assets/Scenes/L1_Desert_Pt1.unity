@@ -1891,12 +1891,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a799a7b9918ad7749a4be096f768d85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 2119135664}
   player: {fileID: 175515402}
-  fadeOverlay: {fileID: 469615805}
+  playerReentryMarker: {fileID: 1584240417}
   lastQueuedSceneParameter: 
   fadeIterationDelay: 0.4
   clearForNext: 1
   previousSceneParameter: Title Screen
+  scene: Desert 1
+  checkForReplay: 1
+  fadeOverlay: {fileID: 469615805}
 --- !u!4 &344717707
 Transform:
   m_ObjectHideFlags: 0

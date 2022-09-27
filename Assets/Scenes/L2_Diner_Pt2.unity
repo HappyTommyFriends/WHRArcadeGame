@@ -1971,6 +1971,7 @@ MonoBehaviour:
   fadeIterationDelay: 0.4
   clearForNext: 0
   previousSceneParameter: Desert 1
+  scene: Diner
 --- !u!4 &2033799353
 Transform:
   m_ObjectHideFlags: 0
