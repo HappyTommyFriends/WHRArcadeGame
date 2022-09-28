@@ -1616,6 +1616,14 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2044112382}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: edgeFindOffset
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: flipSpriteOnDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
 --- !u!4 &274390707 stripped
@@ -2789,7 +2797,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_Size.x
-      value: 0.64
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_Enabled
@@ -2797,7 +2805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_Offset.x
-      value: 0.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_UsedByEffector
@@ -3763,7 +3771,7 @@ PrefabInstance:
     - target: {fileID: 538544568270653562, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: jumpNoise
       value: 
-      objectReference: {fileID: 8300000, guid: 0af540428d3eda340b9ceb38ca0e0ba3, type: 3}
+      objectReference: {fileID: 8300000, guid: d837543bdfdf8364cb03a6ca13271deb, type: 3}
     - target: {fileID: 538544568270653562, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: shovelDig
       value: 
@@ -6009,6 +6017,14 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2044112382}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: edgeFindOffset
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: flipSpriteOnDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
 --- !u!4 &1050074997 stripped
@@ -7757,6 +7773,14 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2044112382}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: edgeFindOffset
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: flipSpriteOnDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
 --- !u!4 &1393634495 stripped
@@ -7916,7 +7940,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_Size.x
-      value: 0.64
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_Enabled
@@ -7924,7 +7948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_Offset.x
-      value: 0.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_UsedByEffector
@@ -10640,7 +10664,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_Size.x
-      value: 0.64
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_Enabled
@@ -10648,7 +10672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_Offset.x
-      value: 0.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2383946463802272583, guid: f3bb9ff80d9f81142bda26240fb4f224, type: 3}
       propertyPath: m_UsedByEffector

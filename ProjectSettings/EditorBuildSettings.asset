@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 43a971e655f7d254fac351ab6668ba92
+  - enabled: 1
+    path: Assets/Scenes/High Scores.unity
+    guid: ff55e80735f0993499b6b2fa296f0d47
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: dc4c54e83270439479ad716c74e1a0a4
+  - enabled: 1
     path: Assets/Scenes/L1_Desert_Pt1.unity
     guid: 886aebeeadcf9438b9d706742de148fe
   - enabled: 1

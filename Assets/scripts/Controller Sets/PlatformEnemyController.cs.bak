@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlatformEnemyController : MonoBehaviour
 {
@@ -21,11 +22,15 @@ public class PlatformEnemyController : MonoBehaviour
 	public float homingDelay = 0.6f;
 	public float lastHoming = 0;
 	public int points = 50;
+	public bool flipSpriteOnDirection = true;
+	
+	protected Animator animator;
 	
 	Vector3 edgeFindOffsetVector;
 	bool _grounded = false;
 	Vector3 lastPosition;
 	bool dead = false;
+	bool idling = false;
 	
 	Rigidbody2D rigidBody;
 	SpriteRenderer spriteRenderer;
@@ -33,6 +38,8 @@ public class PlatformEnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		animator = gameObject.GetComponent<Animator>();
+		animator.SetInteger("state", 1);
 		lastPosition = transform.position;
 		rigidBody = GetComponent<Rigidbody2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
@@ -81,7 +88,7 @@ public class PlatformEnemyController : MonoBehaviour
 	}
 		
 	void FixedUpdate() {
-		if(stuck())
+		if(!idling && stuck())
 			tinyHopFix();
     }
 	
@@ -93,16 +100,39 @@ public class PlatformEnemyController : MonoBehaviour
 		}
 	}
 	
-	void goLeft() {
+	public void goLeft() {
+		idling = false;
 		directionMultiplier = -1;
 		setEdgeFindOffsetVector();
-		spriteRenderer.flipX = false;
+		if(flipSpriteOnDirection)
+			spriteRenderer.flipX = false;
+		if(animator == null)
+			return;
+		
+		animator.SetBool("right", false);
+		animator.SetInteger("state", 1);
 	}
 	
-	void goRight() {
+	public void goRight() {
+		idling = false;
 		directionMultiplier = 1;
 		setEdgeFindOffsetVector();
-		spriteRenderer.flipX = true;
+		if(flipSpriteOnDirection)
+			spriteRenderer.flipX = true;
+		if(animator == null)
+			return;
+		
+		animator.SetBool("right", true);
+		animator.SetInteger("state", 1);
+	}
+	
+	public void idle() {
+		idling = true;
+		directionMultiplier = 0;
+		if(animator == null)
+			return;
+		
+		animator.SetInteger("state", 0);
 	}
 	
 	bool goingOverEdge() {
@@ -123,7 +153,9 @@ public class PlatformEnemyController : MonoBehaviour
 	void flipDirection() {
 		directionMultiplier *= -1;
 		setEdgeFindOffsetVector();
-		spriteRenderer.flipX = (directionMultiplier > 0);
+		if(flipSpriteOnDirection)
+			spriteRenderer.flipX = (directionMultiplier > 0);
+		
 	}
 	 
 	 bool stuck() {
