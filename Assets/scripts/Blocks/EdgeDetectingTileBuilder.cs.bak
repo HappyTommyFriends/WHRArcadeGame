@@ -55,6 +55,10 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 		return tileBuilders[builderType][x].ContainsKey(y);
 	}
 	
+	static EdgeDetectingTileBuilder getTileAt(string builderType, int x, int y) {
+		return tileBuilders[builderType][x][y].GetComponent<EdgeDetectingTileBuilder>();
+	}
+	
 	static void logTileBuilders() {
 		foreach(KeyValuePair<string, Dictionary<int, Dictionary<int, GameObject>>> typeRow in tileBuilders) {
 			foreach(KeyValuePair<int, Dictionary<int, GameObject>> indexRow in typeRow.Value) {
@@ -156,6 +160,9 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 		GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity);
 		tile.transform.parent = transform;
 		tile.transform.localPosition = Vector3.zero;
+		
+		if(tileOnRight() && !tileOnLeft())
+			unifyHorizontalBoundingBox();
 	}
 	
 	bool tileOnTop() {
@@ -186,4 +193,21 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
     {
         
     }
+	
+	protected void unifyHorizontalBoundingBox() {
+		int count = 2;
+		EdgeDetectingTileBuilder tile = getTileAt(builderType, x + 1, y);
+		while(tile.tileOnRight()) {
+			tile = getTileAt(builderType, x + count, y);
+			Destroy(tile.gameObject.GetComponent<BoxCollider2D>());
+			count++;
+		}
+		
+		float newWidth = tileWidth * count;
+		BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
+		float newX = bc2d.offset.x + (tileWidth * (count - 1) / 2);
+		bc2d.size = new Vector2(newWidth, bc2d.size.y);
+		bc2d.offset = new Vector2(newX, bc2d.offset.y);
+		Debug.Log(name + " count: " + count);
+	}
 }

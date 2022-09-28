@@ -42,17 +42,21 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 			tileBuilders[type].Add(builder.x, new Dictionary<int, GameObject>());
 		tileBuilders[type][builder.x].Add(builder.y, builder.gameObject);
 		
-		logTileBuilders();
+		// logTileBuilders();
 	}
 	
 	static bool tileAt(string builderType, int x, int y) {
-		Debug.Log("tileAt(" + builderType + ", " + x + ", " + y + ")");
-		Debug.Log(tileBuilders[builderType].ContainsKey(x));
+		// Debug.Log("tileAt(" + builderType + ", " + x + ", " + y + ")");
+		// Debug.Log(tileBuilders[builderType].ContainsKey(x));
 		if(!tileBuilders[builderType].ContainsKey(x))
 			return false;
 		
-		Debug.Log(tileBuilders[builderType][x].ContainsKey(y));
+		// Debug.Log(tileBuilders[builderType][x].ContainsKey(y));
 		return tileBuilders[builderType][x].ContainsKey(y);
+	}
+	
+	static EdgeDetectingTileBuilder getTileAt(string builderType, int x, int y) {
+		return tileBuilders[builderType][x][y].GetComponent<EdgeDetectingTileBuilder>();
 	}
 	
 	static void logTileBuilders() {
@@ -75,16 +79,16 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		Debug.Log("My builderType is " + builderType);
-		Debug.Log(transform.position);
+		// Debug.Log("My builderType is " + builderType);
+		// Debug.Log(transform.position);
 		if(snapYPosition)
 			transform.position = new Vector3(transform.position.x, (float) (Math.Round(transform.position.y / tileWidth) * tileWidth), transform.position.z);
 		if(snapXPosition)
 			transform.position = new Vector3((float) (Math.Round(transform.position.x / tileWidth) * tileWidth), transform.position.y, transform.position.z);
-		Debug.Log(transform.position);
+		// Debug.Log(transform.position);
         x = (int) Math.Round(transform.position.x / tileWidth);
 		y = (int) Math.Round(transform.position.y / tileHeight);
-		Debug.Log(x + ", " + y);
+		// Debug.Log(x + ", " + y);
 		register(this);
 		Invoke("configure", 0.1f);
     }
@@ -100,7 +104,7 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 			adjacentConfiguration += 4;
 		if(tileOnLeft())
 			adjacentConfiguration += 8;
-		Debug.Log("adjacentConfiguration: " + adjacentConfiguration);
+		// Debug.Log("adjacentConfiguration: " + adjacentConfiguration);
 		GameObject prefab = null;
 		switch(adjacentConfiguration) {
 			case 0:
@@ -156,6 +160,9 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 		GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity);
 		tile.transform.parent = transform;
 		tile.transform.localPosition = Vector3.zero;
+		
+		if(tileOnRight() && !tileOnLeft())
+			unifyHorizontalBoundingBox();
 	}
 	
 	bool tileOnTop() {
@@ -186,4 +193,22 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
     {
         
     }
+	
+	protected void unifyHorizontalBoundingBox() {
+		int count = 2;
+		EdgeDetectingTileBuilder tile = getTileAt(builderType, x + 1, y);
+		Destroy(tile.gameObject.GetComponent<BoxCollider2D>());
+		while(tile.tileOnRight()) {
+			tile = getTileAt(builderType, x + count, y);
+			Destroy(tile.gameObject.GetComponent<BoxCollider2D>());
+			count++;
+		}
+		
+		float newWidth = tileWidth * count;
+		BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
+		float newX = bc2d.offset.x + (tileWidth * (count - 1) / 2);
+		bc2d.size = new Vector2(newWidth, bc2d.size.y);
+		bc2d.offset = new Vector2(newX, bc2d.offset.y);
+		Debug.Log(name + " count: " + count);
+	}
 }
