@@ -78,6 +78,10 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 	public GameObject spacer;
 	public int letterHeight = 9;
 	
+	public int letterWidth(char letter) {
+		return letterWidth(letter.ToString());
+	}
+	
 	public int letterWidth(string letter) {
 		return innerLetterWidth(letter) + 1;
 	}
@@ -114,7 +118,14 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "E":
 			case "F":
 			case "I":
+			case "L":
 				return 3;
+			case "1":
+			case "3":
+			case "4":
+			case "5":
+			case "8":
+			case "9":
 			case "?":
 			case "b":
 			case "d":
@@ -131,8 +142,13 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "J":
 			case "K":
 			case "O":
+			case "P":
 			case "S":
 				return 4;
+			case "0":
+			case "2":
+			case "6":
+			case "7":
 			case "a":
 			case "m":
 			case "w":
@@ -229,6 +245,24 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 		return '|';
 	}
 	
+	public GameObject CenteredWordObject(string word, int messageWidth) {
+		return WordObject(alignCenter(word, messageWidth));
+	}
+	
+	public GameObject WordObject(string word) {
+		GameObject w = new GameObject();
+		float pX = 0;
+		foreach(char c in word.ToCharArray()) {
+			pX += ((float) letterWidth(c)) / 200;
+			GameObject letter = getLetter(c);
+			letter.transform.parent = w.transform;
+			letter.transform.position = new Vector3(pX, 0, 0);
+			pX += ((float) letterWidth(c)) / 200;
+		}			
+		
+		return w;
+	}
+	
 	public GameObject getLetter(char letter) {
 		GameObject lo = Instantiate(letterObject(letter), Vector3.zero, Quaternion.identity);
 		
@@ -240,6 +274,26 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			return spacer;
 		
 		switch(letter) {
+			case '0':
+				return n0;
+			case '1':
+				return n1;
+			case '2':
+				return n2;
+			case '3':
+				return n3;
+			case '4':
+				return n4;
+			case '5':
+				return n5;
+			case '6':
+				return n6;
+			case '7':
+				return n7;
+			case '8':
+				return n8;
+			case '9':
+				return n9;
 			case ' ':
 				return space;
 			case 'a':

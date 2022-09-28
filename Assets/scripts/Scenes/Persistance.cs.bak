@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Timers;
+using System;
+using System.Reflection;
 
 public class Persistance
 {
@@ -20,8 +22,14 @@ public class Persistance
 			return;
 		
 		GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-		Debug.Log(gameManager);
-		Debug.Log(gameManager.score);
+		if(gameManager == null)
+			return;
+		
+		Type t = gameManager.GetType();
+		PropertyInfo p = t.GetProperty("score");
+		if(p == null)
+			return;
+		
 		score = gameManager.score;
 	}
 
@@ -39,6 +47,8 @@ public class Persistance
 		Debug.Log("Persistance._delayedAddReplay()...");
 		if(!replays.ContainsKey(replayToAdd))
 			replays.Add(replayToAdd, true);
+		
+		replays[replayToAdd] = true;
 	}
 	
 	public static void load(string scene) {

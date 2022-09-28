@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Timers;
+using System;
+using System.Reflection;
 
 public class Persistance
 {
@@ -19,9 +21,18 @@ public class Persistance
 		if(scene == "Diner")
 			return;
 		
-		GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-		Debug.Log(gameManager);
-		Debug.Log(gameManager.score);
+		GameObject gameManagerObject = GameObject.Find("GameManager");
+		if(gameManagerObject == null)
+			return;
+		GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+		if(gameManager == null)
+			return;
+		
+		Type t = gameManager.GetType();
+		PropertyInfo p = t.GetProperty("score");
+		if(p == null)
+			return;
+		
 		score = gameManager.score;
 	}
 
