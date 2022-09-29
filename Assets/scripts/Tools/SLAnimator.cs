@@ -12,7 +12,7 @@ public class SLAnimator : MonoBehaviour
 	}
 	
 	public void Animate(GameObject go, Vector3 startVector, Vector3 endVector, float animationDuration) {
-		Debug.Log("SLAnimator.Animate()...");
+		// Debug.Log("SLAnimator.Animate()...");
 		go.transform.position = startVector;
 		if(!vectorAnimations.ContainsKey(go)) {
 			vectorAnimations.Add(go, new Vector3[2]);
@@ -30,9 +30,8 @@ public class SLAnimator : MonoBehaviour
     {
 		List<GameObject> removes = new List<GameObject>();
 		
-		Debug.Log("SLAnimator.Update()...");
         foreach(KeyValuePair<GameObject, Vector3[]> animation in vectorAnimations) {
-			Debug.Log(animation);
+			// Debug.Log(animation);
 			float delta = (Time.time - vectorAnimationTimings[animation.Key][0]) / vectorAnimationTimings[animation.Key][1];
 			if(delta > 1)
 				delta = 1;

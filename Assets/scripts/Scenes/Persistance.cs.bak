@@ -21,16 +21,24 @@ public class Persistance
 		if(scene == "Diner")
 			return;
 		
-		GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		GameObject gameManagerObject = GameObject.Find("GameManager");
+		if(gameManagerObject == null)
+			return;
+		
+		Debug.Log("gameManagerObject exists");
+		GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
 		if(gameManager == null)
 			return;
 		
+		Debug.Log("gameManager exists");
 		Type t = gameManager.GetType();
 		PropertyInfo p = t.GetProperty("score");
 		if(p == null)
 			return;
 		
+		Debug.Log("score property exists");
 		score = gameManager.score;
+		Debug.Log(score);
 	}
 
 	private static void delayedAddReplay(string scene) {

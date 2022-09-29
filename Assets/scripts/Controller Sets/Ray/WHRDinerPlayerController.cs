@@ -60,7 +60,7 @@ public class WHRDinerPlayerController : PlayerController {
 	}
 	
 	protected override void takeAction(string action) {
-		Debug.Log("takeAction " + action);
+		// Debug.Log("takeAction " + action);
 		lastAction = action;
 		
 		switch(action) {

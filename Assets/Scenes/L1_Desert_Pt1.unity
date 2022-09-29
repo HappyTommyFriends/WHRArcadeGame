@@ -4846,7 +4846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116396, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116396, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -4921,9 +4921,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: hp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 175515402}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: points
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: activated
       value: 1
@@ -4945,6 +4953,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2119135664}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: deathExitDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: edgeFindOffset
       value: -0.08
       objectReference: {fileID: 0}
@@ -4952,6 +4964,10 @@ PrefabInstance:
       propertyPath: activationSound
       value: 
       objectReference: {fileID: 8300000, guid: ffa077142dddb8746a2d0d7039b8b483, type: 3}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: flipSpriteOnDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
 --- !u!1001 &1181508503
@@ -4975,7 +4991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116396, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116396, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -5050,9 +5066,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: hp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 175515402}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: points
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: activated
       value: 1
@@ -5074,6 +5098,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2119135664}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: deathExitDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: edgeFindOffset
       value: -0.08
       objectReference: {fileID: 0}
@@ -5081,6 +5109,10 @@ PrefabInstance:
       propertyPath: activationSound
       value: 
       objectReference: {fileID: 8300000, guid: ffa077142dddb8746a2d0d7039b8b483, type: 3}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: flipSpriteOnDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
 --- !u!1 &1189495939
@@ -5718,7 +5750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116396, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116396, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -5793,9 +5825,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: hp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 175515402}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: points
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: activated
       value: 1
@@ -5817,6 +5857,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2119135664}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: deathExitDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: edgeFindOffset
       value: -0.08
       objectReference: {fileID: 0}
@@ -5824,6 +5868,10 @@ PrefabInstance:
       propertyPath: activationSound
       value: 
       objectReference: {fileID: 8300000, guid: ffa077142dddb8746a2d0d7039b8b483, type: 3}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: flipSpriteOnDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
 --- !u!4 &1393990061 stripped
@@ -6885,7 +6933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116396, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116396, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -6960,9 +7008,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: hp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 175515402}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: points
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: activated
       value: 1
@@ -6984,6 +7040,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2119135664}
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: deathExitDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: edgeFindOffset
       value: -0.08
       objectReference: {fileID: 0}
@@ -6991,6 +7051,10 @@ PrefabInstance:
       propertyPath: activationSound
       value: 
       objectReference: {fileID: 8300000, guid: ffa077142dddb8746a2d0d7039b8b483, type: 3}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: flipSpriteOnDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
 --- !u!1001 &1814961177

@@ -483,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116396, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3487990853227116396, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -576,6 +576,14 @@ PrefabInstance:
     - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
       propertyPath: gameManager
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: deathExitDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487990853227116401, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}
+      propertyPath: flipSpriteOnDirection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a2acc6120b1a884198d6ff29261c07f, type: 3}

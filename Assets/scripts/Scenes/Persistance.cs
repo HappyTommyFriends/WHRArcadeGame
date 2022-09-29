@@ -24,13 +24,9 @@ public class Persistance
 		GameObject gameManagerObject = GameObject.Find("GameManager");
 		if(gameManagerObject == null)
 			return;
+		
 		GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
 		if(gameManager == null)
-			return;
-		
-		Type t = gameManager.GetType();
-		PropertyInfo p = t.GetProperty("score");
-		if(p == null)
 			return;
 		
 		score = gameManager.score;

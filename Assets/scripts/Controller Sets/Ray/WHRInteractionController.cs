@@ -7,7 +7,7 @@ public class WHRInteractionController : InteractionController
 	public WHRPlayerController player;
 	
     public override void interact(Interaction interaction) {
-		Debug.Log("PlayerInteractionController.interact: " + interaction.type);
+		// Debug.Log("PlayerInteractionController.interact: " + interaction.type);
 		switch(interaction.type) {
 			case "attack":
 				attack(interaction);

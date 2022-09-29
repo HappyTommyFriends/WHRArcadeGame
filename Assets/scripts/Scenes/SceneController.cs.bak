@@ -96,7 +96,8 @@ public class SceneController : MonoBehaviour
 	
 	public void startTransition() {
 		Debug.Log("SceneController.startTransition()...");
-		player.freezeMovement();
+		if(player != null)
+			player.freezeMovement();
 		if(fadeOverlay != null) {
 			fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,0.25f);
 			Invoke("fadeOut2", fadeIterationDelay);

@@ -251,35 +251,6 @@ public class WHRDinerPlayerController : PlayerController {
 		platform2.attemptDig(hit.point);
 	}
 	
-	void freezeMovement() {
-		Debug.Log("Freezing Movement");
-		horizontalSpeed = 0;
-		movementFrozen = true;
-		if(GetComponent<Rigidbody2D>().gravityScale != 0)
-			oldGravityScale = GetComponent<Rigidbody2D>().gravityScale;
-		GetComponent<Rigidbody2D>().gravityScale = 0;
-		
-		GetComponent<BoxCollider2D>().enabled = false;
-	}
-	
-	void unfreezeMovement() {
-		Debug.Log("Unfreezing Movement");
-		movementFrozen = false;
-		GetComponent<Rigidbody2D>().gravityScale = oldGravityScale;
-		GetComponent<BoxCollider2D>().enabled = true;
-		maybeTakeLastAction();
-	}
-	
-	void maybeTakeLastAction() {
-		switch(lastAction) {
-			case "upRight":
-			case "upLeft":
-			case "up":
-				return;
-		}
-		takeAction(lastAction);
-	}
-	
 	void attemptDig() {
 		Debug.Log("attemptDig");
 		if(!canDig())

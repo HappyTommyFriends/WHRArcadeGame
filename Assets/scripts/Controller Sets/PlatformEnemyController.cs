@@ -26,6 +26,8 @@ public class PlatformEnemyController : MonoBehaviour
 	public AudioClip activationSound;
 	public AudioClip attackSound;
 	public AudioClip deathSound;
+	public bool flipOnDeath = true;
+	public float deathExitDelay = 0f;
 	
 	protected Animator animator;
 	
@@ -37,6 +39,9 @@ public class PlatformEnemyController : MonoBehaviour
 	
 	Rigidbody2D rigidBody;
 	SpriteRenderer spriteRenderer;
+	
+    const int ATTACK_STATE = 2;
+	const int DAMAGE_STATE = 3;
 	
     // Start is called before the first frame update
     void Start()
@@ -91,7 +96,7 @@ public class PlatformEnemyController : MonoBehaviour
 	}
 		
 	void FixedUpdate() {
-		if(!idling && stuck())
+		if(!dead && !idling && stuck())
 			tinyHopFix();
     }
 	
@@ -131,7 +136,7 @@ public class PlatformEnemyController : MonoBehaviour
 	
 	public void idle() {
 		idling = true;
-		directionMultiplier = 0;
+		StopMotion();
 		if(animator == null)
 			return;
 		
@@ -171,10 +176,11 @@ public class PlatformEnemyController : MonoBehaviour
 	 }
 	 
 	 void attackPlayer() {
-		Debug.Log("attackPlayer");
 		hop();
 
-		player.interactionController.interact(Interaction.basicAttack(gameObject, attackPower));
+		animator.SetInteger("state", ATTACK_STATE);
+		if(player != null)
+			player.interactionController.interact(Interaction.basicAttack(gameObject, attackPower));
 		AudioSource source = GetComponent<AudioSource>();
 		if(source == null)
 			return;
@@ -219,9 +225,10 @@ public class PlatformEnemyController : MonoBehaviour
 	 }
 	 
 	 public void damage(float amount) {
-		 hp -= amount;
-		 if(hp <= 0)
-			 die();
+		animator.SetInteger("state", DAMAGE_STATE);
+		hp -= amount;
+		if(hp <= 0)
+			die();
 	 }
 	 
 	 void die() {
@@ -229,21 +236,39 @@ public class PlatformEnemyController : MonoBehaviour
 			return;
 
 		hp = 0;
-		spriteRenderer.flipY = true;
-		Destroy(GetComponent<BoxCollider2D>());
 		dead = true;
-		gameManager.addScore(points);
-		 
+		animator.SetBool("dead", true);
+		StopMotion();
+		if(gameManager != null)
+			gameManager.addScore(points);
+		
+		Destroy(GetComponent<BoxCollider2D>());
+		rigidBody.gravityScale = 0;
+		if(rigidBody.velocity.y > 0)
+			rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
+		Invoke("DeathExit", deathExitDelay);
 		AudioSource source = GetComponent<AudioSource>();
 		if(source == null)
 			return;
 		
 		source.PlayOneShot(deathSound);
 	 }
+	 
+	 void StopMotion() {
+		directionMultiplier = 0;
+		rigidBody.velocity = new Vector2(0, 0);
+	 }
+	 
+	 void DeathExit() {
+		if(flipOnDeath)
+			spriteRenderer.flipY = true;
+		
+		rigidBody.gravityScale = 1;
+	 }
 	
 	void OnCollisionEnter2D(Collision2D collision)
-	{		
-		if(collision.gameObject.name == "Player") {
+	{
+		if(!dead && collision.gameObject.name == "Player") {
 			attackPlayer();
 			return;
 		}
@@ -258,7 +283,6 @@ public class PlatformEnemyController : MonoBehaviour
 		if(activated)
 			return;
 		
-		Debug.Log("Enemy Activating...");
 		activated = true;
 		AudioSource source = GetComponent<AudioSource>();
 		if(source == null)
@@ -268,22 +292,13 @@ public class PlatformEnemyController : MonoBehaviour
 	}
 	
 	void OnTriggerEnter(Collider collider) {
-		Debug.Log(collider);
-		Debug.Log(collider.gameObject);
-		Debug.Log(collider.gameObject.name);
 	}
 	
 	void OnTriggerEnter2D(Collider2D collider) {
-		Debug.Log(collider);
-		Debug.Log(collider.gameObject);
-		Debug.Log(collider.gameObject.name);
 		if(collider.gameObject.name == "Activator")
 			activate();
 	}
 	
 	void OnTrigger(Collider collider) {
-		Debug.Log(collider);
-		Debug.Log(collider.gameObject);
-		Debug.Log(collider.gameObject.name);
 	}
 }

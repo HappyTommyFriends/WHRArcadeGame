@@ -7,17 +7,12 @@ public class SLAnimator : MonoBehaviour
 	Dictionary<GameObject, Vector3[]> vectorAnimations = new Dictionary<GameObject, Vector3[]>();
 	Dictionary<GameObject, float[]> vectorAnimationTimings = new Dictionary<GameObject, float[]>();
 
-	public static void Animate(GameObject go, Vector3 endVector, float animationDuration) {
+	public void Animate(GameObject go, Vector3 endVector, float animationDuration) {
 		Animate(go, go.transform.position, endVector, animationDuration);
 	}
 	
-	public static void Animate(GameObject go, Vector3 startVector, Vector3 endVector, float animationDuration) {
-		Debug.Log("SLAnimator#Animate()...");
-		SLAnimator animator = new SLAnimator();
-		animator.RegisterAnimation(go, startVector, endVector, animationDuration);
-	}
-	
-	public void RegisterAnimation(GameObject go, Vector3 startVector, Vector3 endVector, float animationDuration) {
+	public void Animate(GameObject go, Vector3 startVector, Vector3 endVector, float animationDuration) {
+		// Debug.Log("SLAnimator.Animate()...");
 		go.transform.position = startVector;
 		if(!vectorAnimations.ContainsKey(go)) {
 			vectorAnimations.Add(go, new Vector3[2]);
@@ -35,7 +30,6 @@ public class SLAnimator : MonoBehaviour
     {
 		List<GameObject> removes = new List<GameObject>();
 		
-		Debug.Log("SLAnimator.Update()...");
         foreach(KeyValuePair<GameObject, Vector3[]> animation in vectorAnimations) {
 			Debug.Log(animation);
 			float delta = (Time.time - vectorAnimationTimings[animation.Key][0]) / vectorAnimationTimings[animation.Key][1];

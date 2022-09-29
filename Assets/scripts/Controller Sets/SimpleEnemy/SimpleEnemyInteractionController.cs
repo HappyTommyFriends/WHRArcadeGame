@@ -16,9 +16,9 @@ public class SimpleEnemyInteractionController : InteractionController
 	}
 	
 	void attack(Interaction interaction) {
-		Debug.Log("SimpleEnemyInteractionController.attack");
-		Debug.Log(this);
-		Debug.Log(this.GetComponent<PlatformEnemyController>());
+		// Debug.Log("SimpleEnemyInteractionController.attack");
+		// Debug.Log(this);
+		// Debug.Log(this.GetComponent<PlatformEnemyController>());
 		this.GetComponent<PlatformEnemyController>().damage(interaction.floats["damage"]);
 		// Vector3 direction = player.transform.position - interaction.source.transform.position;!
 		// player.rigidBody.AddForce(direction.normalized * 2000f);

@@ -33,7 +33,7 @@ public class SceneController : MonoBehaviour
 	}
 	
 	public void allowTransition() {
-		Debug.Log("SceneController.allowTransition()...");	
+		// Debug.Log("SceneController.allowTransition()...");	
 		preventTransition = false;
 	}
 	

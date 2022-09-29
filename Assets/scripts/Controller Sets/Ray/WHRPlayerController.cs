@@ -59,13 +59,12 @@ public class WHRPlayerController : PlayerController {
 	const int STATE_DIG_LEFT = 74;
 	
 	new void setStartingAnimationState() {
-		Debug.Log("setStartingAnimationState");
 		_currentAnimationState = STATE_IDLE;
 		updateHPDisplay();
 	}
 	
 	protected override void takeAction(string action) {
-		Debug.Log("takeAction " + action);
+		// Debug.Log("takeAction " + action);
 		lastAction = action;
 		
 		switch(action) {
@@ -257,7 +256,6 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void attemptDig() {
-		Debug.Log("attemptDig");
 		if(!canDig())
 			return;
 		
@@ -265,16 +263,14 @@ public class WHRPlayerController : PlayerController {
 			return;
 		
 		Vector2 rayStart = new Vector2(transform.position.x, transform.position.y) + digOffsetVector();
-		Debug.Log(rayStart);
-		Debug.Log(rayStart + Vector2.down.normalized * digDistance);
-		Debug.DrawLine(rayStart, rayStart + Vector2.down.normalized * digDistance);
+		// Debug.Log(rayStart);
+		// Debug.Log(rayStart + Vector2.down.normalized * digDistance);
+		// Debug.DrawLine(rayStart, rayStart + Vector2.down.normalized * digDistance);
 		RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, digDistance);
         if(hit.collider == null)
 			return;
 		
 		changeState(STATE_DIG_DOWN);
-		Debug.Log(hit.collider);
-		Debug.Log(hit.collider.name);
 		if(hit.collider.gameObject.name == "Platform") {
 			playSound(shovelDig);
 			SmartPlatform platform = hit.collider.gameObject.GetComponent<SmartPlatform>();
@@ -372,14 +368,10 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void handleAttackConnect(Collider2D collider) {
-		// Debug.Log("handleAttackConnect");
-		// Debug.Log(collider);
-		// Debug.Log(collider.name + " :: " + scorpion.name);
 		if(scorpion != null && collider.name == scorpion.name) {
 			scorpion.damage(1f);
 			return;
 		}
-		// Debug.Log(collider.GetComponent<InteractionController>());
 		collider.GetComponent<InteractionController>().interact(Interaction.basicAttack(this.gameObject, attackPower));
 	}
 	
@@ -473,8 +465,6 @@ public class WHRPlayerController : PlayerController {
 		if(preCheckJumps && !preJumpCheck())
 			return;
 		
-		Debug.Log("jumpNoise:");
-		Debug.Log(jumpNoise);
 		playSound(jumpNoise);
 		rigidBody.AddForce(new Vector2(0, jumpStrength));
 		changeState(jumpState());
