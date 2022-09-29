@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5333972958887303045}
   - component: {fileID: 5333972958887303042}
   m_Layer: 0
-  m_Name: Platform
+  m_Name: Smart Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,19 +99,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74dd431d12568424bb3101bdb9bb9646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile54: {fileID: 6880546949436483232, guid: 9c01cd8e1b7184c47adca4c08a658781, type: 3}
+  soloTile: {fileID: 6880546949436483232, guid: 9c01cd8e1b7184c47adca4c08a658781, type: 3}
   tile177: {fileID: 5347240285877120316, guid: 616b89de8373e3e4799a035455563b98, type: 3}
-  tile62: {fileID: 1413995361698796965, guid: b61e966b84d7a234db6e13ff3abf5653, type: 3}
-  tileFull: {fileID: 5366636342557750938, guid: 1c90717d64321be4992e2a91c198e915, type: 3}
-  tile248: {fileID: 4223282182051210405, guid: 84089231fdbbcbf45bcfe6630beb8166, type: 3}
-  tile191: {fileID: 188193371529799515, guid: 6b8b269e228720741a98a77d5c21ff77, type: 3}
-  tile255: {fileID: 7971745469082176922, guid: f45fd1ae1269c8846a05907367b14858, type: 3}
-  tile241: {fileID: 3404551885209003231, guid: 6afa898d40001384fbef69618c536ef4, type: 3}
-  tile187: {fileID: 4528944557141009252, guid: 1828d15490358c744a67c41de3d2e7c9, type: 3}
+  topLeftTile: {fileID: 8064640023498608611, guid: 3bba995bdb96c5f4fa7af8328b5683a0, type: 3}
+  topTile: {fileID: 6681433405931836938, guid: b095870911a3f57429ae8b8429b7bb5b, type: 3}
+  topRightTile: {fileID: 528188904328165317, guid: 91dd399632af6c04daf099de02cf4db9, type: 3}
+  leftTile: {fileID: 2205584878650930625, guid: 55284359c6b8798459107e198a4c83a6, type: 3}
+  centerTile: {fileID: 866410028992440113, guid: e53da35f7a1015d4692736af08aab292, type: 3}
+  rightTile: {fileID: 3290184720067631398, guid: 498ced91880ba8e409a11db54a1b9bb0, type: 3}
   snapYPosition: 1
   tileWidth: 0.16
   tileHeight: 0.16
+  noCorners: 0
   diggable: 0
+  reconstructive: 0
+  noTop: 0
+  rightSplit: 0
+  leftSplit: 0
+  digAnimationDuration: 0.5
+  soloDig: {fileID: 0}
+  bothEdgeDig: {fileID: 0}
+  topLeftDig: {fileID: 0}
+  topDig: {fileID: 7402481386684578013, guid: 71515057b8328c84cb5904626201dca0, type: 3}
+  topRightDig: {fileID: 0}
+  leftDig: {fileID: 0}
+  centerDig: {fileID: 0}
+  rightDig: {fileID: 0}
   smartPlatformPrefab: {fileID: 5333972958887303043}
 --- !u!61 &5333972958887303045
 BoxCollider2D:

@@ -203,6 +203,7 @@ public class WHRPlayerController : PlayerController {
 			}
 		}
 		
+		return;
 		hit = Physics2D.Raycast(rayStart + new Vector2(0, 0.16f), directionVector(), digDistance);
         if(hit.collider == null)
 			return;
@@ -375,7 +376,7 @@ public class WHRPlayerController : PlayerController {
 		// Debug.Log("handleAttackConnect");
 		// Debug.Log(collider);
 		// Debug.Log(collider.name + " :: " + scorpion.name);
-		if(collider.name == scorpion.name) {
+		if(scorpion != null && collider.name == scorpion.name) {
 			scorpion.damage(1f);
 			return;
 		}

@@ -5,14 +5,14 @@ using System;
 
 public class SmartPlatform : MonoBehaviour
 {
-	public GameObject tile54;
+	public GameObject soloTile;
 	public GameObject tile177;	
-	public GameObject tile62;
-	public GameObject tileFull;
-	public GameObject tile248;
-	public GameObject tile191;
-	public GameObject tile255;
-	public GameObject tile241;
+	public GameObject topLeftTile;
+	public GameObject topTile;
+	public GameObject topRightTile;
+	public GameObject leftTile;
+	public GameObject centerTile;
+	public GameObject rightTile;
 	
 	public bool snapYPosition = true;
 	public float tileWidth = 0.16f;
@@ -23,6 +23,16 @@ public class SmartPlatform : MonoBehaviour
 	public bool noTop = false;
 	public bool rightSplit = false;
 	public bool leftSplit = false;
+	public float digAnimationDuration = 0.5f;
+	
+	public GameObject soloDig;
+	public GameObject bothEdgeDig;
+	public GameObject topLeftDig;
+	public GameObject topDig;
+	public GameObject topRightDig;
+	public GameObject leftDig;
+	public GameObject centerDig;
+	public GameObject rightDig;
 	
 	public GameObject smartPlatformPrefab;
 	
@@ -70,27 +80,27 @@ public class SmartPlatform : MonoBehaviour
 		
 		
 		if(rightSplit) {
-			tile54 = tile248;
-			tile177 = tile241;
-			tile62 = tileFull;
-			tile191 = tile255;
+			soloTile = topRightTile;
+			tile177 = rightTile;
+			topLeftTile = topTile;
+			leftTile = centerTile;
 		}
 		if(leftSplit) {
-			tile54 = tile62;
-			tile177 = tile191;
-			tile241 = tile255;
-			tile248 = tileFull;
+			soloTile = topLeftTile;
+			tile177 = leftTile;
+			rightTile = centerTile;
+			topRightTile = topTile;
 		}
 		if(noCorners) {
-			tile54 = tile177;
-			tile62 = tile191;
-			tile248 = tile241;
+			soloTile = tile177;
+			topLeftTile = leftTile;
+			topRightTile = rightTile;
 		}
 		if(noTop) {
-			tile54 = tile177;
-			tile62 = tile191;
-			tile248 = tile241;
-			tileFull = tile255;
+			soloTile = tile177;
+			topLeftTile = leftTile;
+			topRightTile = rightTile;
+			topTile = centerTile;
 		}
 		
 		if(GetComponent<SpriteRenderer>() != null)
@@ -106,7 +116,7 @@ public class SmartPlatform : MonoBehaviour
 		tiles.Add(new List<GameObject>());
 		float yPosition = (height - 1) * 0.5f * tileHeight;
 		if(width == 1) {
-			GameObject tile = Instantiate(tile54, Vector3.zero, Quaternion.identity);
+			GameObject tile = Instantiate(soloTile, Vector3.zero, Quaternion.identity);
 			tile.transform.parent = transform;
 			tile.transform.localPosition = new Vector3(0, yPosition, 0);
 			tiles[0].Add(tile);
@@ -121,22 +131,22 @@ public class SmartPlatform : MonoBehaviour
 		}
 		if(width == 2) {
 			float xPosition = -tileWidth * 0.5f;
-			GameObject tile = Instantiate(tile62, Vector3.zero, Quaternion.identity);
+			GameObject tile = Instantiate(topLeftTile, Vector3.zero, Quaternion.identity);
 			tile.transform.parent = transform;
 			tile.transform.localPosition = new Vector3(xPosition, yPosition, 0);
 			tiles[0].Add(tile);
-			tile = Instantiate(tile248, Vector3.zero, Quaternion.identity);
+			tile = Instantiate(topRightTile, Vector3.zero, Quaternion.identity);
 			tile.transform.parent = transform;
 			tile.transform.localPosition = new Vector3(xPosition + tileWidth, yPosition, 0);
 			tiles[0].Add(tile);
 			for(int i = 2; i <= height; i++) {
 				tiles.Add(new List<GameObject>());
 				yPosition -= tileHeight;
-				tile = Instantiate(tile191, Vector3.zero, Quaternion.identity);
+				tile = Instantiate(leftTile, Vector3.zero, Quaternion.identity);
 				tile.transform.parent = transform;
 				tile.transform.localPosition = new Vector3(xPosition, yPosition, 0);
 				tiles[i - 1].Add(tile);
-				tile = Instantiate(tile241, Vector3.zero, Quaternion.identity);
+				tile = Instantiate(rightTile, Vector3.zero, Quaternion.identity);
 				tile.transform.parent = transform;
 				tile.transform.localPosition = new Vector3(xPosition + tileWidth, yPosition, 0);
 				tiles[i - 1].Add(tile);
@@ -144,34 +154,34 @@ public class SmartPlatform : MonoBehaviour
 		}
 		if(width > 2) {
 			float xPosition = (width - 1) * tileWidth * -0.5f;
-			GameObject tile = Instantiate(tile62, Vector3.zero, Quaternion.identity);
+			GameObject tile = Instantiate(topLeftTile, Vector3.zero, Quaternion.identity);
 			tile.transform.parent = transform;
 			tile.transform.localPosition = new Vector3(xPosition, yPosition, 0);
 			tiles[0].Add(tile);
 			for(int x = 2; x < width; x++) {
-				tile = Instantiate(tileFull, Vector3.zero, Quaternion.identity);
+				tile = Instantiate(topTile, Vector3.zero, Quaternion.identity);
 				tile.transform.parent = transform;
 				tile.transform.localPosition = new Vector3(xPosition + tileWidth * (x - 1), yPosition, 0);
 				tiles[0].Add(tile);
 			}
-			tile = Instantiate(tile248, Vector3.zero, Quaternion.identity);
+			tile = Instantiate(topRightTile, Vector3.zero, Quaternion.identity);
 			tile.transform.parent = transform;
 			tile.transform.localPosition = new Vector3(xPosition + tileWidth * (width - 1), yPosition, 0);
 			tiles[0].Add(tile);
 			for(int y = 2; y <= height; y++) {
 				tiles.Add(new List<GameObject>());
 				yPosition -= tileHeight;
-				tile = Instantiate(tile191, Vector3.zero, Quaternion.identity);
+				tile = Instantiate(leftTile, Vector3.zero, Quaternion.identity);
 				tile.transform.parent = transform;
 				tile.transform.localPosition = new Vector3(xPosition, yPosition, 0);
 				tiles[y - 1].Add(tile);
 				for(int x = 2; x < width; x++) {
-					tile = Instantiate(tile255, Vector3.zero, Quaternion.identity);
+					tile = Instantiate(centerTile, Vector3.zero, Quaternion.identity);
 					tile.transform.parent = transform;
 					tile.transform.localPosition = new Vector3(xPosition + tileWidth * (x - 1), yPosition, 0);
 					tiles[y - 1].Add(tile);
 				}
-				tile = Instantiate(tile241, Vector3.zero, Quaternion.identity);
+				tile = Instantiate(rightTile, Vector3.zero, Quaternion.identity);
 				tile.transform.parent = transform;
 				tile.transform.localPosition = new Vector3(xPosition + tileWidth * (width - 1), yPosition, 0);
 				tiles[y - 1].Add(tile);
@@ -213,8 +223,20 @@ public class SmartPlatform : MonoBehaviour
 		if(x < 0)
 			x = 0;
 		// Debug.Log(x + "," + y);
+		GameObject digT = digTile(x, y);
+		digT.transform.position = tiles[y][x].transform.position;
+		this.Invoke(() => DestroyObject(digT), digAnimationDuration);
 		Destroy(tiles[y][x]);
 		dig(x, y);
+	}
+	
+	private void DestroyObject(GameObject go) {
+		Debug.Log("DestroyObject " + go);
+		Destroy(go);
+	}
+	
+	public GameObject digTile(int x, int y) {
+		return Instantiate(topDig, transform.position + new Vector3(0, (height - y) * tileHeight / 2, 0), Quaternion.identity);
 	}
 	
 	public void dig(int x, int y) {
@@ -413,6 +435,7 @@ public class SmartPlatform : MonoBehaviour
 			rebuild();
 			return;
 		}
+		// Top (not a corner)
 		clearChildren();
 		platformGameobject = Instantiate(smartPlatformPrefab, transform.position + new Vector3(topLeft().x + x * tileWidth / 2 - transform.position.x, (height - 1) * tileHeight / 2, 0), Quaternion.identity);
 		platformGameobject.name = "Platform";
@@ -421,12 +444,11 @@ public class SmartPlatform : MonoBehaviour
 		platform.leftSplit = true;
 		
 		float rightWidth = (float) (width - x - 1);
-		platformGameobject = Instantiate(smartPlatformPrefab, topRight() + new Vector3(-rightWidth * tileWidth / 2, -tileHeight / 2, 0), Quaternion.identity);
+		platformGameobject = Instantiate(smartPlatformPrefab, topRight() + new Vector3(-rightWidth * tileWidth / 2, -tileHeight / 2, transform.position.z), Quaternion.identity);
 		platformGameobject.name = "Platform";
 		platform = platformGameobject.GetComponent<SmartPlatform>();
 		platform.transform.localScale = new Vector3(rightWidth, 1f, 1f);
 		platform.rightSplit = true;
-				
 		if(height == 1) {
 			Destroy(gameObject);
 			return;
@@ -437,4 +459,18 @@ public class SmartPlatform : MonoBehaviour
 		noTop = true;
 		rebuild();
 	}
+}
+
+public static class Utility
+{
+    public static void Invoke(this MonoBehaviour mb, Action f, float delay)
+    {
+        mb.StartCoroutine(InvokeRoutine(f, delay));
+    }
+ 
+    private static IEnumerator InvokeRoutine(System.Action f, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        f();
+    }
 }

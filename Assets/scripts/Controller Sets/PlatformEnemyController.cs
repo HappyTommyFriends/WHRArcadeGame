@@ -23,6 +23,9 @@ public class PlatformEnemyController : MonoBehaviour
 	public float lastHoming = 0;
 	public int points = 50;
 	public bool flipSpriteOnDirection = true;
+	public AudioClip activationSound;
+	public AudioClip attackSound;
+	public AudioClip deathSound;
 	
 	protected Animator animator;
 	
@@ -168,10 +171,15 @@ public class PlatformEnemyController : MonoBehaviour
 	 }
 	 
 	 void attackPlayer() {
-		 Debug.Log("attackPlayer");
-		 hop();
-		 
-		 player.interactionController.interact(Interaction.basicAttack(gameObject, attackPower));
+		Debug.Log("attackPlayer");
+		hop();
+
+		player.interactionController.interact(Interaction.basicAttack(gameObject, attackPower));
+		AudioSource source = GetComponent<AudioSource>();
+		if(source == null)
+			return;
+		
+		source.PlayOneShot(attackSound);
 	 }
 	 
 	 bool landing() {
@@ -217,11 +225,20 @@ public class PlatformEnemyController : MonoBehaviour
 	 }
 	 
 	 void die() {
-		 hp = 0;
-		 spriteRenderer.flipY = true;
-		 Destroy(GetComponent<BoxCollider2D>());
-		 dead = true;
-		 gameManager.addScore(points);
+		if(dead)
+			return;
+
+		hp = 0;
+		spriteRenderer.flipY = true;
+		Destroy(GetComponent<BoxCollider2D>());
+		dead = true;
+		gameManager.addScore(points);
+		 
+		AudioSource source = GetComponent<AudioSource>();
+		if(source == null)
+			return;
+		
+		source.PlayOneShot(deathSound);
 	 }
 	
 	void OnCollisionEnter2D(Collision2D collision)
@@ -238,8 +255,16 @@ public class PlatformEnemyController : MonoBehaviour
 	}
 	
 	void activate() {
+		if(activated)
+			return;
+		
 		Debug.Log("Enemy Activating...");
 		activated = true;
+		AudioSource source = GetComponent<AudioSource>();
+		if(source == null)
+			return;
+		
+		source.PlayOneShot(activationSound);
 	}
 	
 	void OnTriggerEnter(Collider collider) {
