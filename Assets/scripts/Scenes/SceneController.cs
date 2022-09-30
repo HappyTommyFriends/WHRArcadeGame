@@ -30,6 +30,10 @@ public class SceneController : MonoBehaviour
 			Invoke("fadeIn2", fadeIterationDelay);
 		}
 		Invoke("allowTransition", 1.1f);
+		if(gameManager == null)
+			return;
+		
+		gameManager.UnfreezeScore();
 	}
 	
 	public void allowTransition() {
@@ -53,6 +57,8 @@ public class SceneController : MonoBehaviour
 		Invoke("allowTransition", 1.1f);
 		// Persistance.load(scene);
 		setScore(Persistance.score);
+		if(scene == "Desert 1")
+			gameManager.FreezeScore();
 		if(playerReentryMarker != null)
 			player.transform.position = new Vector3(playerReentryMarker.transform.position.x, playerReentryMarker.transform.position.y, player.transform.position.z);
 	}

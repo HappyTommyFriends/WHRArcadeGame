@@ -5,9 +5,10 @@ using System;
 
 public class Scorpion : MonoBehaviour
 {
+	public GameManager gameManager;
 	public float walkSpeed = 1f;
 	public float chargeSpeed = 1.3f;
-	public float attackRange = 0.16f;
+	public float attackRange = 0.16f;	
 	public float hp = 8;
 	public WHRPlayerController player;
 	
@@ -340,6 +341,7 @@ public class Scorpion : MonoBehaviour
             Destroy(joint);
 			
 		rigidBody.AddForce(new Vector2(0, 750f));
+		gameManager.addScore(1000);
 	}
 	
 	void playSound(AudioClip clip) {

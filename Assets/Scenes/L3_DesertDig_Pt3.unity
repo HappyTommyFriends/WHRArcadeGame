@@ -8660,6 +8660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb674a65eb8a61245b9e90f3811fd698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 2044112382}
   walkSpeed: 1
   chargeSpeed: 1.3
   attackRange: 0.16
