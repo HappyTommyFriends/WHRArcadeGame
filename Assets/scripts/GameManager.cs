@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 	public GameObject scoreObject;
 	Text scoreText;
 	
+	bool scoreFrozen = false;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,18 @@ public class GameManager : MonoBehaviour
     }
 	
 	public void addScore(int amount) {
+		if(scoreFrozen)
+			return;
+		
 		score += amount;
 		scoreText.text = "Score: " + score.ToString();
+	}
+	
+	public void FreezeScore() {
+		scoreFrozen = true;
+	}
+	
+	public void UnfreezeScore() {
+		scoreFrozen = false;
 	}
 }
