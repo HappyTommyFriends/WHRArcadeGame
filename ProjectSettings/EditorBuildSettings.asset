@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/L2_Diner_Pt2.unity
     guid: a1183f028c28bc04c9060231a33575f0
   - enabled: 1
-    path: Assets/Scenes/L3_DesertDig_Pt3.unity
+    path: Assets/Scenes/UFO_Finale.unity
     guid: 1bd1728f37bab47e7b11cf510ccacbe5
   m_configObjects: {}
