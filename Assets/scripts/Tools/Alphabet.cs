@@ -206,12 +206,29 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 	
 	public string alignLeft(string message, int messageWidth) {
 		int spaces = messageWidth - width(message);
-		while(spaces < 0) {
+		while(spaces > 0) {
 			message += " ";
-			spaces--;
+			spaces -= width(" ");
 		}
 		
 		return message;
+	}
+	
+	public string AlignJustify(string message, int messageWidth) {
+		int spaces = messageWidth - width(message);
+		string[] pieces = message.Split(" ");
+		string w = pieces[0];
+		for(int i = 1; i < pieces.Length; i++) {
+			int spacesInSpace = spaces / (pieces.Length - i);
+			spaces -= spacesInSpace;
+			while(spacesInSpace > 0) {
+				w += " ";
+				spacesInSpace -= width(" ");
+			}
+			w += pieces[i];
+		}
+		
+		return w;
 	}
 	
 	public string alignCenter(string message, int messageWidth) {
@@ -243,6 +260,14 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 	
 	public char spacerCharacter() {
 		return '|';
+	}
+	
+	public GameObject AlignedLeftWordObject(string word, int messageWidth) {
+		return WordObject(alignLeft(word, messageWidth));
+	}
+	
+	public GameObject JustifiedWordObject(string word, int messageWidth) {
+		return WordObject(AlignJustify(word, messageWidth));
 	}
 	
 	public GameObject CenteredWordObject(string word, int messageWidth) {

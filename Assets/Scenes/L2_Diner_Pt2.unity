@@ -2057,6 +2057,8 @@ MonoBehaviour:
   scene: Diner
   checkForReplay: 1
   fadeOverlay: {fileID: 1997657232}
+  tallyScore: 0
+  tallyScreen: {fileID: 0}
 --- !u!4 &2033799353
 Transform:
   m_ObjectHideFlags: 0

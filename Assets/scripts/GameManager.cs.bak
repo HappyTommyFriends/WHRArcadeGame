@@ -25,9 +25,16 @@ public class GameManager : MonoBehaviour
     }
 	
 	public void addScore(int amount) {
+		if(scoreFrozen)
+			return;
+		
 		score += amount;
 		scoreText.text = "Score: " + score.ToString();
 	}
+	
+	public void SetScore(int amount) {
+		score = amount;
+		scoreText.text = "Score: " + score.ToString();
 	
 	public void FreezeScore() {
 		scoreFrozen = true;

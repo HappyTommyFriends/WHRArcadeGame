@@ -17,6 +17,7 @@ public class WHRPlayerController : PlayerController {
 	public AudioClip shovelDig;
 	public float height = 0.32f;
 	public Scorpion scorpion;
+	public int time = 200;
 	
 	bool _attacking = false;
 	float lastJump = 0;
@@ -59,8 +60,18 @@ public class WHRPlayerController : PlayerController {
 	const int STATE_DIG_LEFT = 74;
 	
 	new void setStartingAnimationState() {
+		Debug.Log("setStartingAnimationState");
 		_currentAnimationState = STATE_IDLE;
 		updateHPDisplay();
+	}
+	
+	protected override void inheritedStart() {
+		Invoke("TimeTick", 2f);
+	}
+	
+	void TimeTick() {
+		time--;
+		Invoke("TimeTick", 1f);
 	}
 	
 	protected override void takeAction(string action) {
