@@ -17,6 +17,7 @@ public class WHRPlayerController : PlayerController {
 	public AudioClip shovelDig;
 	public float height = 0.32f;
 	public Scorpion scorpion;
+	public int time = 200;
 	
 	bool _attacking = false;
 	float lastJump = 0;
@@ -62,6 +63,15 @@ public class WHRPlayerController : PlayerController {
 		Debug.Log("setStartingAnimationState");
 		_currentAnimationState = STATE_IDLE;
 		updateHPDisplay();
+	}
+	
+	protected void override inheritedStart() {
+		Invoke("TimeTick", 2f);
+	}
+	
+	void TimeTick() {
+		time--;
+		Invoke("TimeTick", 1f);
 	}
 	
 	protected override void takeAction(string action) {
@@ -257,7 +267,6 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void attemptDig() {
-		// Debug.Log("attemptDig");
 		if(!canDig())
 			return;
 		
@@ -273,8 +282,6 @@ public class WHRPlayerController : PlayerController {
 			return;
 		
 		changeState(STATE_DIG_DOWN);
-		// Debug.Log(hit.collider);
-		// Debug.Log(hit.collider.name);
 		if(hit.collider.gameObject.name == "Platform") {
 			playSound(shovelDig);
 			SmartPlatform platform = hit.collider.gameObject.GetComponent<SmartPlatform>();
@@ -372,14 +379,10 @@ public class WHRPlayerController : PlayerController {
 	}
 	
 	void handleAttackConnect(Collider2D collider) {
-		// Debug.Log("handleAttackConnect");
-		// Debug.Log(collider);
-		// Debug.Log(collider.name + " :: " + scorpion.name);
 		if(scorpion != null && collider.name == scorpion.name) {
 			scorpion.damage(1f);
 			return;
 		}
-		// Debug.Log(collider.GetComponent<InteractionController>());
 		collider.GetComponent<InteractionController>().interact(Interaction.basicAttack(this.gameObject, attackPower));
 	}
 	

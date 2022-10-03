@@ -19,6 +19,8 @@ public class SceneController : MonoBehaviour
 	public string scene;
 	public bool checkForReplay = true;
 	public GameObject fadeOverlay;
+	public bool tallyScore = true;
+	public TallyScoreScreen tallyScreen;
 	
 	bool preventTransition = true;
 	
@@ -57,6 +59,7 @@ public class SceneController : MonoBehaviour
 		Invoke("allowTransition", 1.1f);
 		// Persistance.load(scene);
 		setScore(Persistance.score);
+		tallyScore = false;
 		if(scene == "Desert 1")
 			gameManager.FreezeScore();
 		if(playerReentryMarker != null)
@@ -104,6 +107,14 @@ public class SceneController : MonoBehaviour
 		Debug.Log("SceneController.startTransition()...");
 		if(player != null)
 			player.freezeMovement();
+		if(tallyScore) {
+			tallyScoreScreen();
+			return;
+		}
+		FadeOut1();
+	}
+	
+	public void FadeOut1() {
 		if(fadeOverlay != null) {
 			fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,0.25f);
 			Invoke("fadeOut2", fadeIterationDelay);
@@ -125,6 +136,12 @@ public class SceneController : MonoBehaviour
 	public void fadeOut4() {
 		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,1f);
 		changeToLastQueuedScene();
+	}
+	
+	public void tallyScoreScreen() {
+		tallyScreen.SetActive(true);
+		tallyScreen.SetSceneManager(this);
+		tallyScreen.Go();
 	}
 	
 	public void changeToLastQueuedScene() {
