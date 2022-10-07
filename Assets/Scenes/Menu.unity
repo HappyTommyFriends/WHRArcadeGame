@@ -162,6 +162,8 @@ MonoBehaviour:
   scene: Menu
   checkForReplay: 1
   fadeOverlay: {fileID: 744878767}
+  tallyScore: 0
+  tallyScreen: {fileID: 0}
 --- !u!4 &16009159
 Transform:
   m_ObjectHideFlags: 0
