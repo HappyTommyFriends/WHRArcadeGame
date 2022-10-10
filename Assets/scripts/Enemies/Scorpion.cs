@@ -326,6 +326,12 @@ public class Scorpion : MonoBehaviour
 	}
 	
 	void die() {
+		death();
+		gameManager.addScore(1000);
+	}
+	
+	// Kill NOT as the player (no score bonus)
+	public void death() {
 		CancelInvoke();
 		dead = true;
 		active = false;
@@ -341,7 +347,6 @@ public class Scorpion : MonoBehaviour
             Destroy(joint);
 			
 		rigidBody.AddForce(new Vector2(0, 750f));
-		gameManager.addScore(1000);
 	}
 	
 	void playSound(AudioClip clip) {
