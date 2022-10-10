@@ -5,9 +5,10 @@ using System;
 
 public class Scorpion : MonoBehaviour
 {
+	public GameManager gameManager;
 	public float walkSpeed = 1f;
 	public float chargeSpeed = 1.3f;
-	public float attackRange = 0.16f;
+	public float attackRange = 0.16f;	
 	public float hp = 8;
 	public WHRPlayerController player;
 	
@@ -325,6 +326,11 @@ public class Scorpion : MonoBehaviour
 	}
 	
 	void die() {
+		death();
+		gameManager.addScore(1000);
+	}
+	
+	void death() {
 		CancelInvoke();
 		dead = true;
 		active = false;
@@ -340,7 +346,25 @@ public class Scorpion : MonoBehaviour
             Destroy(joint);
 			
 		rigidBody.AddForce(new Vector2(0, 750f));
-		gameManager.addScore(1000);
+	}
+	
+	// Kill NOT as the player (no score bonus)
+	public void death() {
+		CancelInvoke();
+		dead = true;
+		active = false;
+		transform.position = new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z);
+		transform.localRotation = Quaternion.Euler(180, 0, 0);
+		// Destroy(GetComponent<BoxCollider2D>());
+		// Destroy(GetComponent<BoxCollider2D>());
+		Component[] hingeJoints;
+
+        hingeJoints = GetComponents(typeof(BoxCollider2D));
+
+        foreach (BoxCollider2D joint in hingeJoints)
+            Destroy(joint);
+			
+		rigidBody.AddForce(new Vector2(0, 750f));
 	}
 	
 	void playSound(AudioClip clip) {

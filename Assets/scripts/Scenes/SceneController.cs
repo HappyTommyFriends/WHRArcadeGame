@@ -21,6 +21,7 @@ public class SceneController : MonoBehaviour
 	public GameObject fadeOverlay;
 	public bool tallyScore = true;
 	public TallyScoreScreen tallyScreen;
+	public Scorpion scorpion;
 	
 	bool preventTransition = true;
 	
@@ -139,6 +140,10 @@ public class SceneController : MonoBehaviour
 	}
 	
 	public void tallyScoreScreen() {
+		Debug.Log("SceneController.tallyScoreScreen...");
+		if(scorpion != null)
+			scorpion.death();
+		
 		tallyScreen.SetActive(true);
 		tallyScreen.SetSceneManager(this);
 		tallyScreen.Go();
@@ -174,6 +179,9 @@ public class SceneController : MonoBehaviour
 				break;
 			case "Desert 2":
 				SceneManager.LoadScene(5);
+				break;
+			case "Win":
+				SceneManager.LoadScene(6);
 				break;
 		}
 	}
