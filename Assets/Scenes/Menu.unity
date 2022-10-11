@@ -164,6 +164,7 @@ MonoBehaviour:
   fadeOverlay: {fileID: 744878767}
   tallyScore: 0
   tallyScreen: {fileID: 0}
+  scorpion: {fileID: 0}
 --- !u!4 &16009159
 Transform:
   m_ObjectHideFlags: 0
@@ -1179,7 +1180,8 @@ MonoBehaviour:
   slAnimator: {fileID: 863822334}
   title: {fileID: 335271508}
   titleDropTime: 2
-  menuSelectionSound: {fileID: 8300000, guid: 0621638ed507f0543a1eccd6c46ed715, type: 3}
+  menuChangeSound: {fileID: 8300000, guid: 0621638ed507f0543a1eccd6c46ed715, type: 3}
+  menuSelectionSound: {fileID: 8300000, guid: 0d5f4f46210f2f94084c48721cd33076, type: 3}
   spacing: 0.14
   options:
   - Start

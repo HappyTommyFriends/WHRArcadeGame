@@ -9,6 +9,7 @@ public class MenuScene : MonoBehaviour
 	public SLAnimator slAnimator;
 	public GameObject title;
 	public float titleDropTime = 1.5f;
+	public AudioClip menuChangeSound;
 	public AudioClip menuSelectionSound;
 	public float spacing = 0.2f;
 	public string[] options;
@@ -41,7 +42,7 @@ public class MenuScene : MonoBehaviour
 		
 		openToInput = false;
 		Invoke("openInput", 0.35f);
-		GetComponent<AudioSource>().PlayOneShot(menuSelectionSound);
+		GetComponent<AudioSource>().PlayOneShot(menuChangeSound);
 		if(v > 0) {
 			navigatePrevious();
 			return;
@@ -85,6 +86,7 @@ public class MenuScene : MonoBehaviour
 	}
 	
 	void selectCurrentIndex() {
+		GetComponent<AudioSource>().PlayOneShot(menuSelectionSound);
 		string selection = options[index];
 		switch(selection) {
 			case "Start":
