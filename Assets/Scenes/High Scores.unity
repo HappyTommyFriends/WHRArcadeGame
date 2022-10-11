@@ -162,6 +162,9 @@ MonoBehaviour:
   scene: High Scores
   checkForReplay: 1
   fadeOverlay: {fileID: 0}
+  tallyScore: 0
+  tallyScreen: {fileID: 0}
+  scorpion: {fileID: 0}
 --- !u!4 &200270702
 Transform:
   m_ObjectHideFlags: 0
