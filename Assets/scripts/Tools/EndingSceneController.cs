@@ -11,6 +11,7 @@ public class EndingSceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		Persistance.clearReplay("Desert 1");
         Invoke("End", totalSceneTime);
     }
 	

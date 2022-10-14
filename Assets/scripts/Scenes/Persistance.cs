@@ -63,4 +63,15 @@ public class Persistance
 		replays[scene] = false;
 		return returnValue;
 	}
+	
+	public static void clearReplay(string scene) {
+		setReplay(scene, false);
+	}
+	
+	private static void setReplay(string scene, bool r) {
+		if(!replays.ContainsKey(scene))
+			replays.Add(scene, r);
+		
+		replays[scene] = r;
+	}
 }
