@@ -25,20 +25,11 @@ public class Persistance
 		if(gameManagerObject == null)
 			return;
 		
-		Debug.Log("gameManagerObject exists");
 		GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
 		if(gameManager == null)
 			return;
 		
-		Debug.Log("gameManager exists");
-		Type t = gameManager.GetType();
-		PropertyInfo p = t.GetProperty("score");
-		if(p == null)
-			return;
-		
-		Debug.Log("score property exists");
 		score = gameManager.score;
-		Debug.Log(score);
 	}
 
 	private static void delayedAddReplay(string scene) {
@@ -71,5 +62,16 @@ public class Persistance
 		bool returnValue = replays[scene];
 		replays[scene] = false;
 		return returnValue;
+	}
+	
+	public static void clearReload(string scene) {
+		setReplay(scene, false);
+	}
+	
+	private static void setReplay(string scene, bool r) {
+		if(!replays.ContainsKey(scene))
+			replays.Add(scene, r);
+		
+		replays[scene] = r;
 	}
 }

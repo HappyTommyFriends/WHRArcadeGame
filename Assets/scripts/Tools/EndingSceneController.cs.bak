@@ -11,11 +11,12 @@ public class EndingSceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		Persistance.clearRelay("Desert 1");
         Invoke("End", totalSceneTime);
     }
 	
 	void End() {
-        SerialController.instance.MessageSend(message);
+        SerialController.instance.MessageSend(magLockMessage);
 		sceneController.transitionTo("Menu");
 	}
 
