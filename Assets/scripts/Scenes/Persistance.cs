@@ -74,4 +74,15 @@ public class Persistance
 		
 		replays[scene] = r;
 	}
+	
+	public static void ClearAllReplays() {
+		List<string> keys = new List<string>();
+		foreach(string key in replays.Keys)
+		{
+			keys.Add(key);
+		}
+		foreach(string key in keys) {
+			replays[key] = false;
+		}
+	}
 }

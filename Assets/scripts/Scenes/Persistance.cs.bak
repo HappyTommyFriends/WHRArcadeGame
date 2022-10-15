@@ -64,7 +64,7 @@ public class Persistance
 		return returnValue;
 	}
 	
-	public static void clearReload(string scene) {
+	public static void clearReplay(string scene) {
 		setReplay(scene, false);
 	}
 	
@@ -73,5 +73,13 @@ public class Persistance
 			replays.Add(scene, r);
 		
 		replays[scene] = r;
+	}
+	
+	public static void ClearAllReplays() {
+		List<string> keys = new List<string>();
+		foreach(var key in replays.Keys)
+		{
+			keys.Add(key);
+		}
 	}
 }

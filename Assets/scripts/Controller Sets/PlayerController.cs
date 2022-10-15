@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
 	public bool yBounded = false;
 	public float minY = 0;
 	public float maxY = 0;
+	public float timeout = 60f;
  
     public Animator animator;
 	public ActionController actionController;
@@ -80,12 +82,24 @@ public class PlayerController : MonoBehaviour
 		if(newAction != action) {
 			action = newAction;
 			takeAction(action);
+			startTimeout();
 		}
 		enforceBounds();
 		rigidBody.velocity = new Vector2(horizontalSpeed, nextVerticalSpeed());
 		if(movementFrozen)
 			rigidBody.velocity = Vector2.zero;
     }
+	
+	protected void startTimeout() {
+		CancelInvoke("_timeout");
+		Invoke("_timeout", timeout);
+	}
+	
+	protected void _timeout() {
+		Persistance.ClearAllReplays();
+		SceneManager.LoadScene(0);
+		Persistance.ClearAllReplays();
+	}
 	
 	protected void enforceBounds() {
 		float[] usableBounds = bounds();
