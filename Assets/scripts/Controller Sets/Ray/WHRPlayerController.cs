@@ -12,6 +12,7 @@ public class WHRPlayerController : PlayerController {
 	public float digOffset = 0.16f;
 	public float digDistance = 0.02f;
 	public float digDuration = 0.3f;
+	public float digHelperDistance = 0.06f;
 	public AudioClip jumpNoise;
 	public AudioClip shovelHit;
 	public AudioClip shovelDig;
@@ -25,7 +26,6 @@ public class WHRPlayerController : PlayerController {
 	bool preCheckJumps = false;
 	AudioSource audioSource;
 
-	// Ghosts and Goblins
     const int STATE_IDLE = 0;
     const int STATE_CLIMB_UP = 1;
     const int STATE_WALK_RIGHT = 2;
@@ -278,8 +278,10 @@ public class WHRPlayerController : PlayerController {
 		// Debug.Log(rayStart + Vector2.down.normalized * digDistance);
 		// Debug.DrawLine(rayStart, rayStart + Vector2.down.normalized * digDistance);
 		RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, digDistance);
-        if(hit.collider == null)
+        if(hit.collider == null) {
+			attemptEdgeDig();
 			return;
+		}
 		
 		changeState(STATE_DIG_DOWN);
 		if(hit.collider.gameObject.name == "Platform") {
@@ -290,6 +292,60 @@ public class WHRPlayerController : PlayerController {
 			
 			if(platform.diggable)
 				platform.attemptDig(hit.point);
+		}
+	}
+	
+	private void attemptEdgeDig() {
+		bool leftFound = false;
+		bool rightFound = false;
+		SmartPlatform leftPlatform = null;
+		SmartPlatform rightPlatform = null;
+		float leftDistance = 0;
+		float rightDistance = 0;
+		
+		Vector2 rayStart = new Vector2(transform.position.x - digHelperDistance, transform.position.y) + digOffsetVector();
+		RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, digDistance);
+        if(hit.collider != null) {
+			changeState(STATE_DIG_DOWN);
+			if(hit.collider.gameObject.name == "Platform") {
+				playSound(shovelDig);
+				leftPlatform = hit.collider.gameObject.GetComponent<SmartPlatform>();
+				if(leftPlatform != null && leftPlatform.diggable) {
+					leftFound = true;
+					leftDistance = Vector3.Distance(transform.position, leftPlatform.transform.position);
+				}
+			}
+		}
+		
+		rayStart = new Vector2(transform.position.x + digHelperDistance, transform.position.y) + digOffsetVector();
+		RaycastHit2D rightHit = Physics2D.Raycast(rayStart, Vector2.down, digDistance);
+        if(rightHit.collider != null) {
+			changeState(STATE_DIG_DOWN);
+			if(rightHit.collider.gameObject.name == "Platform") {
+				if(!leftFound)
+					playSound(shovelDig);
+				rightPlatform = rightHit.collider.gameObject.GetComponent<SmartPlatform>();
+				if(rightPlatform != null && rightPlatform.diggable) {
+					rightFound = true;
+					rightDistance = Vector3.Distance(transform.position, rightPlatform.transform.position);
+				}
+			}
+		}
+		
+		if(leftFound) {
+			if(rightFound) {
+				if(leftDistance <= rightDistance) {
+					leftPlatform.attemptDig(hit.point);
+					return;
+				}
+				rightPlatform.attemptDig(rightHit.point);
+				return;
+			}
+			leftPlatform.attemptDig(hit.point);
+			return;
+		}
+		if(rightFound) {
+			rightPlatform.attemptDig(rightHit.point);
 		}
 	}
 	
