@@ -22,13 +22,15 @@ public class SceneController : MonoBehaviour
 	public bool tallyScore = true;
 	public TallyScoreScreen tallyScreen;
 	public Scorpion scorpion;
+	public Color fadeInColor = new Color(0f,0f,0f,1f);
+	public Color fadeOutColor = new Color(0f,0f,0f,1f);
 	
 	bool preventTransition = true;
 	
 	public void Start() {
 		Debug.Log("SceneController.Start()...");
 		if(fadeOverlay != null) {
-			fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,1f);
+			fadeOverlay.GetComponent<SpriteRenderer>().color = fadeInColor;
 			fadeOverlay.transform.localPosition = new Vector3(0, 1f, 1f);
 			Invoke("fadeIn2", fadeIterationDelay);
 		}
@@ -76,22 +78,22 @@ public class SceneController : MonoBehaviour
 	}
 	
 	public void fadeIn2() {
-		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,0.75f);
+		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeInColor.r, fadeInColor.g, fadeInColor.b, 0.75f);
 		Invoke("fadeIn3", fadeIterationDelay);
 	}
 	
 	public void fadeIn3() {
-		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,0.5f);
+		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeInColor.r, fadeInColor.g, fadeInColor.b, 0.5f);
 		Invoke("fadeIn4", fadeIterationDelay);
 	}
 	
 	public void fadeIn4() {
-		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,0.25f);
+		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeInColor.r, fadeInColor.g, fadeInColor.b, 0.25f);
 		Invoke("fadeIn5", fadeIterationDelay);
 	}
 	
 	public void fadeIn5() {
-		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(0f,0f,0f,0f);
+		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeInColor.r, fadeInColor.g, fadeInColor.b, 0f);
 	}
 	
 	public void transitionTo(string sceneParameter) {
@@ -142,7 +144,7 @@ public class SceneController : MonoBehaviour
 	public void tallyScoreScreen() {
 		Debug.Log("SceneController.tallyScoreScreen...");
 		if(scorpion != null)
-			scorpion.die();
+			scorpion.death();
 		
 		tallyScreen.SetActive(true);
 		tallyScreen.SetSceneManager(this);
