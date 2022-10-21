@@ -15,7 +15,7 @@ public class MenuScene : MonoBehaviour
 	public string[] options;
 	
 	int index = 0;
-	bool openToInput = true;
+	bool openToInput = false;
 	float startingY;
 	
     // Start is called before the first frame update
@@ -23,18 +23,19 @@ public class MenuScene : MonoBehaviour
     {
 		startingY = selectionIcon.transform.position.y;
         slAnimator.Animate(title, new Vector3(0, 0, title.transform.position.z), titleDropTime);
+		Invoke("openInput", 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!openToInput)
+			return;
+		
 		if(selectButtonPressed()) {
 			selectCurrentIndex();
 			return;
 		}
-		
-        if(!openToInput)
-			return;
 		
 		float v = Input.GetAxisRaw("Vertical");
 		if(v == 0)
@@ -86,6 +87,7 @@ public class MenuScene : MonoBehaviour
 	}
 	
 	void selectCurrentIndex() {
+		openToInput = false;
 		GetComponent<AudioSource>().PlayOneShot(menuSelectionSound);
 		string selection = options[index];
 		switch(selection) {
