@@ -6379,7 +6379,7 @@ MonoBehaviour:
   port: COM3
   ID: 0
   baudrate: 9600
-  debugPrint: 0
+  debugPrint: 1
   autoConnect: 1
   autoReconnect: 1
   maxMessageLength: 50
