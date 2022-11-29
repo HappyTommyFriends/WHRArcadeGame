@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class CaveTrackCoordinator : MonoBehaviour
 {
+	public static CaveTrackCoordinator instance;
+
 	public WHRPlayerController player;
 	public AudioClip mainTrack;
 	public AudioClip caveTrack;
 	public AudioClip bossTrack;
-	
+
 	public float caveCutoff;
 	public float bossCutoff;
-	
+
 	public Scorpion scorpion;
-	
-	AudioSource source;
+
+	public AudioSource source;
 	int state = 0;
-	
+
     // Start is called before the first frame update
     void Start()
     {
-		source = GetComponent<AudioSource>();
-        playTrack(mainTrack);
+			instance = this;
+			source = GetComponent<AudioSource>();
+      playTrack(mainTrack);
     }
 
     // Update is called once per frame
@@ -29,7 +32,7 @@ public class CaveTrackCoordinator : MonoBehaviour
     {
 		if(state == 3)
 			return;
-		
+
 		if(state == 0) {
 			if(player.transform.position.y < caveCutoff) {
 				playTrack(caveTrack);
@@ -37,7 +40,7 @@ public class CaveTrackCoordinator : MonoBehaviour
 			}
 			return;
 		}
-			
+
 		if(state == 1 && player.transform.position.x > bossCutoff) {
 			playTrack(bossTrack);
 			state = 2;
@@ -45,13 +48,13 @@ public class CaveTrackCoordinator : MonoBehaviour
 			scorpion.activate();
 			return;
 		}
-		
+
 		if(state == 2 && scorpion.isDead()) {
 			playTrack(caveTrack);
 			state = 3;
 		}
     }
-	
+
 	void playTrack(AudioClip clip) {
 		source.clip = clip;
 		source.Play();

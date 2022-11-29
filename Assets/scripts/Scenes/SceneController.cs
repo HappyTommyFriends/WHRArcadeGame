@@ -8,7 +8,7 @@ public class SceneController : MonoBehaviour
 {
 	public static string[] scenes = new string[10];
 	public static int sceneIndex = 0;
-	
+
 	public GameManager gameManager;
 	public PlayerController player;
 	public GameObject playerReentryMarker;
@@ -20,13 +20,15 @@ public class SceneController : MonoBehaviour
 	public bool checkForReplay = true;
 	public GameObject fadeOverlay;
 	public bool tallyScore = true;
+	public AudioClip endingNoise;
+	public float endingDelay = 2f;
 	public TallyScoreScreen tallyScreen;
 	public Scorpion scorpion;
 	public Color fadeInColor = new Color(0f,0f,0f,1f);
 	public Color fadeOutColor = new Color(0f,0f,0f,1f);
-	
+
 	bool preventTransition = true;
-	
+
 	public void Start() {
 		Debug.Log("SceneController.Start()...");
 		if(fadeOverlay != null) {
@@ -37,26 +39,26 @@ public class SceneController : MonoBehaviour
 		Invoke("allowTransition", 1.1f);
 		if(gameManager == null)
 			return;
-		
+
 		gameManager.UnfreezeScore();
 	}
-	
+
 	public void allowTransition() {
-		// Debug.Log("SceneController.allowTransition()...");	
+		// Debug.Log("SceneController.allowTransition()...");
 		preventTransition = false;
 	}
-	
+
 	public void Update() {
 		if(checkForReplay) {
 			checkForStartup();
 		}
 	}
-	
+
 	public void checkForStartup() {
 		if(Persistance.isReload(scene))
 			replayTasks();
 	}
-	
+
 	protected void replayTasks() {
 		Debug.Log("SceneController.replayTasks()...");
 		Invoke("allowTransition", 1.1f);
@@ -68,55 +70,72 @@ public class SceneController : MonoBehaviour
 		if(playerReentryMarker != null)
 			player.transform.position = new Vector3(playerReentryMarker.transform.position.x, playerReentryMarker.transform.position.y, player.transform.position.z);
 	}
-	
+
 	protected void setScore(int score) {
 		if(gameManager == null)
 			return;
-		
+
 		gameManager.score = 0;
 		gameManager.addScore(score);
 	}
-	
+
 	public void fadeIn2() {
 		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeInColor.r, fadeInColor.g, fadeInColor.b, 0.75f);
 		Invoke("fadeIn3", fadeIterationDelay);
 	}
-	
+
 	public void fadeIn3() {
 		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeInColor.r, fadeInColor.g, fadeInColor.b, 0.5f);
 		Invoke("fadeIn4", fadeIterationDelay);
 	}
-	
+
 	public void fadeIn4() {
 		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeInColor.r, fadeInColor.g, fadeInColor.b, 0.25f);
 		Invoke("fadeIn5", fadeIterationDelay);
 	}
-	
+
 	public void fadeIn5() {
 		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeInColor.r, fadeInColor.g, fadeInColor.b, 0f);
 	}
-	
+
 	public void transitionTo(string sceneParameter) {
 		Debug.Log("SceneController.transitionTo: " + sceneParameter);
 		Debug.Log(preventTransition + ": " + preventTransition);
 		if(preventTransition)
 			return;
-		
+
 		lastQueuedSceneParameter = sceneParameter;
 		startTransition();
 	}
-	
+
 	public void startTransition() {
 		Debug.Log("SceneController.startTransition()...");
-		if(player != null)
-			player.freezeMovement();
 		if(tallyScore) {
-			tallyScoreScreen();
+			if(player != null)
+				player.freezeMovement();
+			DelayedTallyScoreScreen();
 			return;
 		}
 		FadeOut1();
 	}
-	
+
+	public void DelayedTallyScoreScreen() {
+		Suspend();
+		playSound(endingNoise);
+		Invoke("tallyScoreScreen", endingDelay);
+	}
+
+	void Suspend() {
+		if(player != null)
+			player.freezeMovement();
+		if(CaveTrackCoordinator.instance != null)
+			CaveTrackCoordinator.instance.source.Stop();
+	}
+
+	void playSound(AudioClip clip) {
+		GetComponent<AudioSource>().PlayOneShot(clip);
+	}
+
 	public void FadeOut1() {
 		if(fadeOverlay != null) {
 			fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeOutColor.r, fadeOutColor.g, fadeOutColor.b, 0.25f);
@@ -125,32 +144,32 @@ public class SceneController : MonoBehaviour
 			Invoke("changeToLastQueuedScene", fadeIterationDelay);
 		}
 	}
-	
+
 	public void fadeOut2() {
 		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeOutColor.r, fadeOutColor.g, fadeOutColor.b, 0.5f);
 		Invoke("fadeOut3", fadeIterationDelay);
 	}
-	
+
 	public void fadeOut3() {
 		fadeOverlay.GetComponent<SpriteRenderer>().color = new Color(fadeOutColor.r, fadeOutColor.g, fadeOutColor.b, 0.75f);
 		Invoke("fadeOut4", fadeIterationDelay);
 	}
-	
+
 	public void fadeOut4() {
 		fadeOverlay.GetComponent<SpriteRenderer>().color = fadeOutColor;
 		changeToLastQueuedScene();
 	}
-	
+
 	public void tallyScoreScreen() {
 		Debug.Log("SceneController.tallyScoreScreen...");
 		if(scorpion != null)
 			scorpion.death();
-		
+
 		tallyScreen.SetActive(true);
 		tallyScreen.SetSceneManager(this);
 		tallyScreen.Go();
 	}
-	
+
 	public void changeToLastQueuedScene() {
 		if(!clearForNext) {
 			changeToSceneParameter(previousSceneParameter);
@@ -158,7 +177,7 @@ public class SceneController : MonoBehaviour
 		}
 		changeToSceneParameter(lastQueuedSceneParameter);
 	}
-	
+
 	public void changeToSceneParameter(string parameter) {
 		Debug.Log("Changing to scene according to parameter " + parameter);
 		preventTransition = true;
