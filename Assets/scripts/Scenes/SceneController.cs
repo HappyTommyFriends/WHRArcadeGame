@@ -122,12 +122,19 @@ public class SceneController : MonoBehaviour
 	public void DelayedTallyScoreScreen() {
 		Suspend();
 		playSound(endingNoise);
-		Invoke("tallyScoreScreen", endingDelay);
+		StartCoroutine(TriggerTallyScoreScreen(endingDelay));
+	}
+
+	private IEnumerator TriggerTallyScoreScreen(float waitTime) {
+		yield return new WaitForSecondsRealtime(waitTime);
+		Time.timeScale = 1f;
+		tallyScoreScreen();
 	}
 
 	void Suspend() {
-		if(player != null)
-			player.freezeMovement();
+		Time.timeScale = 0;
+	// 	if(player != null)
+	// 		player.freezeMovement();
 		if(CaveTrackCoordinator.instance != null)
 			CaveTrackCoordinator.instance.source.Stop();
 	}

@@ -2415,9 +2415,11 @@ MonoBehaviour:
   player: {fileID: 585968398}
   mainTrack: {fileID: 8300000, guid: 57f3e04b713651842b2b68a496e42056, type: 3}
   caveTrack: {fileID: 8300000, guid: 28ce6757e2749354a94ddb14aa38bc4e, type: 3}
+  bossIntro: {fileID: 8300000, guid: 0d5f4f46210f2f94084c48721cd33076, type: 3}
   bossTrack: {fileID: 8300000, guid: d8c7c2cec59f0dd42bac86200a8ab0f5, type: 3}
   caveCutoff: -2.9
   bossCutoff: 10.8
+  bossIntroDuration: 3
   scorpion: {fileID: 1597769018}
   source: {fileID: 0}
 --- !u!4 &375121855
