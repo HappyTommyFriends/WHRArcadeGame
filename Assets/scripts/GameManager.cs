@@ -8,9 +8,12 @@ public class GameManager : MonoBehaviour
 	public int score = 0;
 	public GameObject scoreObject;
 	Text scoreText;
-	
+
 	bool scoreFrozen = false;
-	
+
+	void OnEnable() {
+		EdgeDetectingTileBuilder.reset();
+	}
     // Start is called before the first frame update
     void Start()
     {
@@ -21,26 +24,26 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-	
+
 	public void addScore(int amount) {
 		if(scoreFrozen)
 			return;
-		
+
 		score += amount;
 		scoreText.text = "Score: " + score.ToString();
 	}
-	
+
 	public void SetScore(int amount) {
 		score = amount;
 		scoreText.text = "Score: " + score.ToString();
 	}
-	
+
 	public void FreezeScore() {
 		scoreFrozen = true;
 	}
-	
+
 	public void UnfreezeScore() {
 		scoreFrozen = false;
 	}

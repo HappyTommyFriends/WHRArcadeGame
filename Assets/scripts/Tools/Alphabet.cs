@@ -77,19 +77,19 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 	public GameObject apostrophe;
 	public GameObject spacer;
 	public int letterHeight = 9;
-	
+
 	public int letterWidth(char letter) {
 		return letterWidth(letter.ToString());
 	}
-	
+
 	public int letterWidth(string letter) {
 		return innerLetterWidth(letter) + 1;
 	}
-	
+
 	public int innerLetterWidth(string letter) {
 		if(letter == spacerCharacter().ToString())
 			return 0;
-		
+
 		switch(letter) {
 			case ".":
 			case "'":
@@ -114,7 +114,6 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "x":
 			case "y":
 			case "z":
-			case "D":
 			case "E":
 			case "F":
 			case "I":
@@ -137,13 +136,17 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "u":
 			case "B":
 			case "C":
+			case "D":
 			case "G":
 			case "H":
 			case "J":
 			case "K":
 			case "O":
 			case "P":
+			case "R":
 			case "S":
+			case "U":
+			case "Z":
 				return 4;
 			case "0":
 			case "2":
@@ -155,35 +158,39 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "A":
 			case "M":
 			case "N":
+			case "Q":
 			case "T":
+			case "V":
+			case "W":
+			case "X":
 			case "Y":
 				return 5;
 			default:
 				return 8;
 		}
 	}
-	
+
 	public int width(string message) {
 		int total = 0;
 		foreach(char letter in message){
 			total += letterWidth(letter.ToString());
 		}
-		
+
 		return total;
-	}	
+	}
 
 	public List<string> split(string message, int maxWidth) {
 		List<string> lines = new List<string>();
-		
+
 		while(message.Trim().Length > 0) {
 			string line = upTo(message, maxWidth);
 			lines.Add(line);
 			message = message.Substring(message.LastIndexOf(line) + line.Length).Trim();
 		}
-		
+
 		return lines;
 	}
-	
+
 	public string upTo(string message, int maxWidth) {
 		string currentString = "";
 		string[] words = message.Split(' ');
@@ -193,27 +200,37 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			int wordWidth = width(word);
 			if(currentWidth + wordWidth > maxWidth)
 				return currentString;
-			
+
 			if(!first)
 				currentString += " ";
 			first = false;
 			currentString += word;
 			currentWidth += wordWidth;
 		}
-		
+
 		return message;
 	}
-	
+
 	public string alignLeft(string message, int messageWidth) {
 		int spaces = messageWidth - width(message);
 		while(spaces > 0) {
 			message += " ";
 			spaces -= width(" ");
 		}
-		
+
 		return message;
 	}
-	
+
+	public string alignRight(string message, int messageWidth) {
+		int spaces = messageWidth - width(message);
+		while(spaces > 0) {
+			message = " " + message;
+			spaces -= width(" ");
+		}
+
+		return message;
+	}
+
 	public string AlignJustify(string message, int messageWidth) {
 		int spaces = messageWidth - width(message);
 		string[] pieces = message.Split(" ");
@@ -227,10 +244,10 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			}
 			w += pieces[i];
 		}
-		
+
 		return w;
 	}
-	
+
 	public string alignCenter(string message, int messageWidth) {
 		Debug.Log("alignCenter: " + messageWidth);
 		int spaces = messageWidth - width(message);
@@ -239,41 +256,45 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			spaces -= width(" ");
 			if(spaces < width(" "))
 				continue;
-			
+
 			message = " " + message;
 			spaces -= width(" ");
 		}
 		while(spaces > 0) {
 			message += spacerCharacter().ToString();
 			spaces--;
-			
+
 			if(spaces < 1)
 				continue;
-			
+
 			message = spacerCharacter().ToString() + message;
 			spaces--;
 		}
-		
+
 		Debug.Log(width(message));
 		return message;
 	}
-	
+
 	public char spacerCharacter() {
 		return '|';
 	}
-	
+
 	public GameObject AlignedLeftWordObject(string word, int messageWidth) {
 		return WordObject(alignLeft(word, messageWidth));
 	}
-	
+
+	public GameObject AlignedRightWordObject(string word, int messageWidth) {
+		return WordObject(alignRight(word, messageWidth));
+	}
+
 	public GameObject JustifiedWordObject(string word, int messageWidth) {
 		return WordObject(AlignJustify(word, messageWidth));
 	}
-	
+
 	public GameObject CenteredWordObject(string word, int messageWidth) {
 		return WordObject(alignCenter(word, messageWidth));
 	}
-	
+
 	public GameObject WordObject(string word) {
 		GameObject w = new GameObject();
 		float pX = 0;
@@ -281,23 +302,23 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			pX += ((float) letterWidth(c)) / 200;
 			GameObject letter = getLetter(c);
 			letter.transform.parent = w.transform;
-			letter.transform.position = new Vector3(pX, 0, 0);
+			letter.transform.localPosition = new Vector3(pX, 0, 0);
 			pX += ((float) letterWidth(c)) / 200;
-		}			
-		
+		}
+
 		return w;
 	}
-	
+
 	public GameObject getLetter(char letter) {
 		GameObject lo = Instantiate(letterObject(letter), Vector3.zero, Quaternion.identity);
-		
+
 		return lo;
 	}
-	
+
 	private GameObject letterObject(char letter) {
 		if(letter == spacerCharacter())
 			return spacer;
-		
+
 		switch(letter) {
 			case '0':
 				return n0;
