@@ -2036,6 +2036,8 @@ MonoBehaviour:
   checkForReplay: 1
   fadeOverlay: {fileID: 469615805}
   tallyScore: 1
+  endingNoise: {fileID: 0}
+  endingDelay: 2
   tallyScreen: {fileID: 980099211}
   scorpion: {fileID: 0}
   fadeInColor: {r: 0, g: 0, b: 0, a: 1}
@@ -3897,6 +3899,10 @@ PrefabInstance:
     - target: {fileID: 538544568270653562, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: minX
       value: -3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 538544568270653562, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
+      propertyPath: time
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 538544568270653562, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: xBounded
