@@ -26,7 +26,8 @@ public class SceneController : MonoBehaviour
 	public Scorpion scorpion;
 	public Color fadeInColor = new Color(0f,0f,0f,1f);
 	public Color fadeOutColor = new Color(0f,0f,0f,1f);
-
+    public Animator animator;
+	
 	bool preventTransition = true;
 
 	public void Start() {
@@ -114,6 +115,8 @@ public class SceneController : MonoBehaviour
 			if(player != null)
 				player.freezeMovement();
 			DelayedTallyScoreScreen();
+				animator.SetBool("Pulsing", true);
+
 			return;
 		}
 		FadeOut1();
