@@ -43,7 +43,11 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 		ensureBuilderType(type);
 		if(!tileBuilders[type].ContainsKey(builder.x))
 			tileBuilders[type].Add(builder.x, new Dictionary<int, GameObject>());
-		tileBuilders[type][builder.x].Add(builder.y, builder.gameObject);
+		if(tileBuilders[type][builder.x].ContainsKey(builder.y)) {
+			Destroy(builder.gameObject);
+		} else {
+			tileBuilders[type][builder.x].Add(builder.y, builder.gameObject);
+		}
 
 		// logTileBuilders();
 	}
@@ -212,6 +216,6 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 		float newX = bc2d.offset.x + (tileWidth * (count - 1) / 2);
 		bc2d.size = new Vector2(newWidth, bc2d.size.y);
 		bc2d.offset = new Vector2(newX, bc2d.offset.y);
-		Debug.Log(name + " count: " + count);
+		// Debug.Log(name + " count: " + count);
 	}
 }

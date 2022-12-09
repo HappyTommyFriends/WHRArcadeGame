@@ -6,7 +6,7 @@ using System;
 public class EdgeDetectingTileBuilder : MonoBehaviour
 {
 	static Dictionary<string, Dictionary<int, Dictionary<int, GameObject>>> tileBuilders = new Dictionary<string, Dictionary<int, Dictionary<int, GameObject>>>();
-	
+
 	public string builderType;
 	public GameObject topLeft;
 	public GameObject topEdge;
@@ -24,41 +24,48 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 	public GameObject edge13;
 	public GameObject edge14;
 	public GameObject solitaire;
-	
+
 	public bool snapYPosition = true;
 	public bool snapXPosition = true;
-	
+
 	public float tileWidth = 0.16f;
 	public float tileHeight = 0.16f;
-	
+
 	protected int x;
 	protected int y;
-	
-	
+
+	public static void reset() {
+		tileBuilders = new Dictionary<string, Dictionary<int, Dictionary<int, GameObject>>>();
+	}
+
 	static void register(EdgeDetectingTileBuilder builder) {
 		string type = builder.builderType;
 		ensureBuilderType(type);
 		if(!tileBuilders[type].ContainsKey(builder.x))
 			tileBuilders[type].Add(builder.x, new Dictionary<int, GameObject>());
-		tileBuilders[type][builder.x].Add(builder.y, builder.gameObject);
-		
+		if(tileBuilders[type][builder.x].ContainsKey(builder.y)) {
+			Destroy(builder.gameObject);
+		} else {
+			tileBuilders[type][builder.x].Add(builder.y, builder.gameObject);
+		}
+
 		// logTileBuilders();
 	}
-	
+
 	static bool tileAt(string builderType, int x, int y) {
 		// Debug.Log("tileAt(" + builderType + ", " + x + ", " + y + ")");
 		// Debug.Log(tileBuilders[builderType].ContainsKey(x));
 		if(!tileBuilders[builderType].ContainsKey(x))
 			return false;
-		
+
 		// Debug.Log(tileBuilders[builderType][x].ContainsKey(y));
 		return tileBuilders[builderType][x].ContainsKey(y);
 	}
-	
+
 	static EdgeDetectingTileBuilder getTileAt(string builderType, int x, int y) {
 		return tileBuilders[builderType][x][y].GetComponent<EdgeDetectingTileBuilder>();
 	}
-	
+
 	static void logTileBuilders() {
 		foreach(KeyValuePair<string, Dictionary<int, Dictionary<int, GameObject>>> typeRow in tileBuilders) {
 			foreach(KeyValuePair<int, Dictionary<int, GameObject>> indexRow in typeRow.Value) {
@@ -68,14 +75,14 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 			}
 		}
 	}
-	
+
 	static void ensureBuilderType(string type) {
 		if(tileBuilders.ContainsKey(type))
 			return;
-		
+
 		tileBuilders.Add(type, new Dictionary<int, Dictionary<int, GameObject>>());
 	}
-	
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,7 +99,7 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 		register(this);
 		Invoke("configure", 0.1f);
     }
-	
+
 	void configure() {
 		clearChildren();
 		int adjacentConfiguration = 0;
@@ -156,31 +163,31 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 				prefab = center;
 				break;
 		}
-		
+
 		GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity);
 		tile.transform.parent = transform;
 		tile.transform.localPosition = Vector3.zero;
-		
+
 		if(tileOnRight() && !tileOnLeft())
 			unifyHorizontalBoundingBox();
 	}
-	
+
 	bool tileOnTop() {
 		return tileAt(builderType, x, y + 1);
 	}
-	
+
 	bool tileOnRight() {
 		return tileAt(builderType, x + 1, y);
 	}
-	
+
 	bool tileOnBottom() {
 		return tileAt(builderType, x, y - 1);
 	}
-	
+
 	bool tileOnLeft() {
 		return tileAt(builderType, x - 1, y);
 	}
-	
+
 	void clearChildren() {
 		foreach(Transform child in this.transform)
 		{
@@ -191,18 +198,19 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-	
+
 	protected void unifyHorizontalBoundingBox() {
 		int count = 2;
 		EdgeDetectingTileBuilder tile = getTileAt(builderType, x + 1, y);
+		Destroy(tile.gameObject.GetComponent<BoxCollider2D>());
 		while(tile.tileOnRight()) {
 			tile = getTileAt(builderType, x + count, y);
 			Destroy(tile.gameObject.GetComponent<BoxCollider2D>());
 			count++;
 		}
-		
+
 		float newWidth = tileWidth * count;
 		BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
 		float newX = bc2d.offset.x + (tileWidth * (count - 1) / 2);

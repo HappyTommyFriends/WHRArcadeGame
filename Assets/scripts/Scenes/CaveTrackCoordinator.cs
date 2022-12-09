@@ -36,7 +36,7 @@ public class CaveTrackCoordinator : MonoBehaviour
 		if(state == 4)
 			return;
 
-			Debug.Log("State: " + state);
+		// Debug.Log("State: " + state);
 
 		if(state == 0) {
 			if(player.transform.position.y < caveCutoff) {
