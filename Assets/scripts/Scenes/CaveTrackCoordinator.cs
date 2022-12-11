@@ -26,8 +26,8 @@ public class CaveTrackCoordinator : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-		instance = this;
-		source = GetComponent<AudioSource>();
+	instance = this;
+	source = GetComponent<AudioSource>();
     playTrack(mainTrack);
   }
 
@@ -45,8 +45,14 @@ public class CaveTrackCoordinator : MonoBehaviour
 			}
 			return;
 		}
+		
+		if(player.transform.position.y > caveCutoff + 0.32f) {
+			state = 0;
+			playTrack(mainTrack);
+			return;
+		}
 
-		if(state == 1 && player.transform.position.x > bossCutoff) {
+		if(state == 1 && player.transform.position.x > bossCutoff && player.transform.position.y < caveCutoff) {
 			state = 2;
 			Time.timeScale = 0;
 			playTrack(bossIntro);
