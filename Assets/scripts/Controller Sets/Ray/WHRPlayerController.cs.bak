@@ -301,6 +301,7 @@ public class WHRPlayerController : PlayerController {
 	}
 
 	private void attemptEdgeDig() {
+		Debug.Log("attemptEdgeDig");
 		bool leftFound = false;
 		bool rightFound = false;
 		SmartPlatform leftPlatform = null;
@@ -545,7 +546,7 @@ public class WHRPlayerController : PlayerController {
 		preCheckJumps = false;
 	}
 
-	void playSound(AudioClip clip) {
+	public void playSound(AudioClip clip) {
 		GetComponent<AudioSource>().PlayOneShot(clip);
 	}
 

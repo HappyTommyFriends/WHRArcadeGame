@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+	public GameObject player;
 	public int score = 0;
 	public GameObject scoreObject;
 	Text scoreText;
