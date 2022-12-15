@@ -6288,7 +6288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 538544568270653562, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: minX
-      value: -3.24
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 538544568270653562, guid: deda7e69f3bc24999aaf088df64bf7f3, type: 3}
       propertyPath: time
@@ -13330,6 +13330,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8734882909712296824, guid: 6fb9f9a3096c64773ba25d97b05f91a3, type: 3}
+      propertyPath: minX
+      value: 10.24
+      objectReference: {fileID: 0}
     - target: {fileID: 8734882909712296824, guid: 6fb9f9a3096c64773ba25d97b05f91a3, type: 3}
       propertyPath: minY
       value: -50
