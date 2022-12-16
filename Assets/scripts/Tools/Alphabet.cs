@@ -83,7 +83,7 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 	}
 
 	public int letterWidth(string letter) {
-		return innerLetterWidth(letter) + 3;
+		return innerLetterWidth(letter) + 1;
 	}
 
 	public int innerLetterWidth(string letter) {
