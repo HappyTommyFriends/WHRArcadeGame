@@ -2038,6 +2038,8 @@ MonoBehaviour:
   tallyScore: 1
   tallyScreen: {fileID: 980099211}
   scorpion: {fileID: 0}
+  fadeInColor: {r: 0, g: 0, b: 0, a: 1}
+  fadeOutColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &344717707
 Transform:
   m_ObjectHideFlags: 0
@@ -7599,6 +7601,18 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 175515399}
+    - target: {fileID: 8734882909712296825, guid: 6fb9f9a3096c64773ba25d97b05f91a3, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734882909712296825, guid: 6fb9f9a3096c64773ba25d97b05f91a3, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734882909712296825, guid: 6fb9f9a3096c64773ba25d97b05f91a3, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8734882909712296826, guid: 6fb9f9a3096c64773ba25d97b05f91a3, type: 3}
       propertyPath: m_Name
       value: Main Camera
