@@ -213,6 +213,9 @@ public class EdgeDetectingTileBuilder : MonoBehaviour
 
 		float newWidth = tileWidth * count;
 		BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
+		if(bc2d == null)
+			return;
+		
 		float newX = bc2d.offset.x + (tileWidth * (count - 1) / 2);
 		bc2d.size = new Vector2(newWidth, bc2d.size.y);
 		bc2d.offset = new Vector2(newX, bc2d.offset.y);

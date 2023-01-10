@@ -335,15 +335,15 @@ public class Scorpion : MonoBehaviour
 		CancelInvoke();
 		dead = true;
 		active = false;
-		transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
-		transform.localRotation = Quaternion.Euler(0, 0, 180);
-		Destroy(GetComponent<BoxCollider2D>());
-		Destroy(GetComponent<BoxCollider2D>());
+		transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+		transform.localRotation = Quaternion.Euler(180, 0, 0);
 		Component[] hingeJoints;
 
         hingeJoints = GetComponents(typeof(BoxCollider2D));
-
         foreach (BoxCollider2D joint in hingeJoints)
+            Destroy(joint);
+        hingeJoints = GetComponents(typeof(PolygonCollider2D));
+        foreach (PolygonCollider2D joint in hingeJoints)
             Destroy(joint);
 
 		rigidBody.AddForce(new Vector2(0, 750f));

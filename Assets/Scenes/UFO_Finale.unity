@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32f0df286bff224b9ffe4aeddd3e4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalSceneTime: 30
+  totalSceneTime: 15
   sceneController: {fileID: 1796402924}
   magLockMessage: relayOn
 --- !u!4 &5566963
