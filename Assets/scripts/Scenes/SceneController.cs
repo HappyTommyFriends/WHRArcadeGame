@@ -101,7 +101,8 @@ public class SceneController : MonoBehaviour
 
 	public void transitionTo(string sceneParameter) {
 		Debug.Log("SceneController.transitionTo: " + sceneParameter);
-		Debug.Log(preventTransition + ": " + preventTransition);
+		Debug.Log("I am registered as being scene '" + scene + "'");
+		Debug.Log("preventTransition: " + preventTransition);
 		if(preventTransition)
 			return;
 
@@ -124,7 +125,9 @@ public class SceneController : MonoBehaviour
 
 	public void DelayedTallyScoreScreen() {
 		Suspend();
-		playSound(endingNoise);
+		Debug.Log("endingNoise: " + endingNoise);
+		if(endingNoise != null)
+			playSound(endingNoise);
 		StartCoroutine(TriggerTallyScoreScreen(endingDelay));
 	}
 
@@ -143,7 +146,10 @@ public class SceneController : MonoBehaviour
 	}
 
 	void playSound(AudioClip clip) {
+		Debug.Log("playSound()", clip);
+		Debug.Log("AudioSource", GetComponent<AudioSource>());
 		GetComponent<AudioSource>().PlayOneShot(clip);
+		Debug.Log("end of playSound");
 	}
 
 	public void FadeOut1() {
