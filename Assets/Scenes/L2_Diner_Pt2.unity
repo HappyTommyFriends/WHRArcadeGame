@@ -536,12 +536,12 @@ MonoBehaviour:
   blinkDelay: 3
   blinkDuration: 0.1
   messages:
-  - Have you seen the size of those rats?!
-  - I used to be an adventurer like you, until I took a snakebite to the knee...
-  - "The channel. It draws you in. Some folks get pulled in and never make it out.
-    Most folks keep their eyes trained on the skies, but the real power is underground.
-    If you\u2019re looking for real answers, start digging by THE OLD WELL. Get the
-    CRYSTALS. Then you\u2019ll see it."
+  - HAVE YOU SEEN THE SIZE OF THOSE RATS?!
+  - I USED TO BE AN ADVENTURER LIKE YOU, UNTIL I TOOK A SNAKE BITE TO THE KNEE...
+  - "THE CHANNEL. IT DRAWS YOU IN. SOME FOLKS GET PULLED IN AND NEVER MAKE IT OUT.
+    MOST FOLKS KEEP THEIR EYES TRAINED ON THE SKIES, BUT THE REAL POWER IS UNDERGROUND.
+    IF YOU\u2019RE LOOKING FOR REAL ANSWERS, START DIGGING BY THE OLD WELL. GET THE
+    CRYSTALS. THEN YOU\u2019LL SEE IT."
   turnDelay: 5
   orderingDrink: 0
   returningCup: 0
@@ -1348,7 +1348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195565435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.889, y: 0.593, z: 0.55}
+  m_LocalPosition: {x: -0.858, y: 0.299, z: 0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1451,9 +1451,8 @@ MonoBehaviour:
   speaker: {fileID: 1195565435}
   player: {fileID: 922110610}
   messages:
-  - Nice Shovel, hon. You plan on eating with that?
-  - "If you\u2019re looking for crazy stuff out here, ain\u2019t nothing crazier
-    than Old Joe."
+  - NICE SHOVEL, HON. YOU PLAN ON EATING WITH THAT?
+  - STRANGEST THING AROUND HERE IS OLD JOE, SITTING RIGHT OVER THERE...
 --- !u!61 &1195565442
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1590,8 +1589,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356047943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.416, y: 0.886, z: -0.014729064}
-  m_LocalScale: {x: 0.4, y: 0.5, z: 1}
+  m_LocalPosition: {x: 1.378, y: 0.804, z: -0.014729064}
+  m_LocalScale: {x: 0.32, y: 0.36, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1740,8 +1739,8 @@ MonoBehaviour:
   speaker: {fileID: 1465125658}
   player: {fileID: 922110610}
   messages:
-  - Another energy chaser, huh? Better grab some food for the journey.
-  - Keep moving right buddy.
+  - ANOTHER ENERGY CHASER, HUH? BETTER GRAB SOME FOOD FOR THE JOURNEY.
+  - KEEP MOVING RIGHT BUDDY.
 --- !u!114 &1465125663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2348,7 +2347,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15573871, y: 0.24092388}
+  m_Size: {x: 0.16, y: 0.21}
   m_EdgeRadius: 0
 --- !u!4 &2142994088
 Transform:
@@ -2358,8 +2357,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142994086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.013, y: -0.965, z: -0.014729064}
-  m_LocalScale: {x: 4, y: 2, z: 1}
+  m_LocalPosition: {x: 0.266, y: -1.193, z: -0.014729064}
+  m_LocalScale: {x: 3.96, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
