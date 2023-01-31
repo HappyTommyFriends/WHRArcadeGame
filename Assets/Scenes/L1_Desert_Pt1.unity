@@ -11983,8 +11983,8 @@ Transform:
   - {fileID: 411511099}
   - {fileID: 1493604068}
   - {fileID: 627250684}
-  - {fileID: 1154236739}
   - {fileID: 389043652}
+  - {fileID: 1154236739}
   - {fileID: 205680669}
   - {fileID: 460935593}
   - {fileID: 1566693839}
@@ -15790,6 +15790,8 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: -6808846514418807176, guid: 8fc2bd61a0906bb4fbdd00a65d214580, type: 2}
     value: {fileID: 2032587286}
+  - key: {fileID: 3613581558535307027, guid: 8fc2bd61a0906bb4fbdd00a65d214580, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1561636339
@@ -16865,7 +16867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8734882909712296825, guid: 6fb9f9a3096c64773ba25d97b05f91a3, type: 3}
       propertyPath: orthographic size
-      value: 0.8716968
+      value: 1.12
       objectReference: {fileID: 0}
     - target: {fileID: 8734882909712296825, guid: 6fb9f9a3096c64773ba25d97b05f91a3, type: 3}
       propertyPath: m_BackGroundColor.b
