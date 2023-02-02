@@ -16,7 +16,7 @@ public class CreditsController : MonoBehaviour
 	public float titleY = -1.1f;
 	public PlatformEnemyController rat;
 	
-	protected static string[] credits = { "Silas Hart", "Doomn", "DrSci", "edd!e", "Jon", "Geetz", "PStu", "tomas", "SL" };
+	protected static string[] credits = { "29 Pixels Arcade Mechanics", "", "Doomn", "DrSci", "edd!e", "Geetz", "Jon", "Lenny", "PStu", "SL", "tomas" };
 	
     void Start() {
 		buildCreditsDisplay();
@@ -70,16 +70,16 @@ public class CreditsController : MonoBehaviour
 		// GameObject creditsWord = alphabet.CenteredWordObject("Credits", scorePixelWidth);
 		// creditsWord.transform.parent = creditsHolder.transform;
 		// creditsWord.transform.localPosition = new Vector3(startX, titleY, 0);
-		// float currentY = startY;
-		// for(int i = 0; i < credits.Length; i++) {
-			// GameObject displayObject = alphabet.CenteredWordObject(" " + credits[i] + " ", scorePixelWidth);
-			// displayObject.transform.parent = creditsHolder.transform;
-			// displayObject.transform.localPosition = new Vector3(startX, currentY, 0);
-			// currentY -= spacing;
-		// }
-		GameObject creditsWord = alphabet.CenteredWordObject("By Silas Hart", scorePixelWidth);
-		creditsWord.transform.parent = creditsHolder.transform;
-		creditsWord.transform.localPosition = new Vector3(startX, titleY, 0);
+		float currentY = startY;
+		for(int i = 0; i < credits.Length; i++) {
+			GameObject displayObject = alphabet.CenteredWordObject(" " + credits[i] + " ", scorePixelWidth);
+			displayObject.transform.parent = creditsHolder.transform;
+			displayObject.transform.localPosition = new Vector3(startX, currentY, 0);
+			currentY -= spacing;
+		}
+		// GameObject creditsWord = alphabet.CenteredWordObject("By Silas Hart", scorePixelWidth);
+		// creditsWord.transform.parent = creditsHolder.transform;
+		// creditsWord.transform.localPosition = new Vector3(startX, titleY, 0);
 	}
 
     void Update() {
