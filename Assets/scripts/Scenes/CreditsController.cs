@@ -16,7 +16,7 @@ public class CreditsController : MonoBehaviour
 	public float titleY = -1.1f;
 	public PlatformEnemyController rat;
 	
-	protected static string[] credits = { "29 Pixels Arcade Mechanics", "", "Doomn", "DrSci", "edd!e", "Geetz", "Jon", "Lenny", "PStu", "SL", "tomas" };
+	protected static string[] credits = { "29 Pixels Arcade Mechanics", "", "Damien O'Donnell", "Eddie Espinoza", "Gregorio Flores", "Jon Hamblin", "Lonnie Tisdale", "Peter Stuart", "Shawn Leavy", "Thomas Meston" };
 	
     void Start() {
 		buildCreditsDisplay();
