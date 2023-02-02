@@ -29,7 +29,7 @@ public class HighScoresController : MonoBehaviour
 		buildScoresDisplay();
 		AddHighScore(Persistance.score);
 		Persistance.score = 0;
-    slAnimator.Animate(highScoresHolder, highScoresHolder.transform.position, Vector3.zero, animationDuration);
+		slAnimator.Animate(highScoresHolder, highScoresHolder.transform.position, Vector3.zero, animationDuration);
 	}
 
 	void buildScoresDisplay() {
@@ -113,9 +113,14 @@ public class HighScoresController : MonoBehaviour
 		names[editingIndex] = scrollInput.text;
 		Destroy(scrollInput);
 		buildScoresDisplay();
-		Invoke("ReleaseEnteringFlag", 1f);
+		Invoke("FinishGame", 1f);
 	}
-
+	
+	public void FinishGame() {
+		sceneController.transitionTo("Credits");
+		Invoke("ReleaseEnteringFlag", 2f);
+	}
+	
 	public void ReleaseEnteringFlag() {
 		enteringScore = false;
 	}

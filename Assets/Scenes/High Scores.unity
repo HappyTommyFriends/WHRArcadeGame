@@ -157,16 +157,19 @@ MonoBehaviour:
   playerReentryMarker: {fileID: 0}
   lastQueuedSceneParameter: 
   fadeIterationDelay: 0.01
-  clearForNext: 0
+  clearForNext: 1
   previousSceneParameter: Menu
   scene: High Scores
   checkForReplay: 1
   fadeOverlay: {fileID: 0}
   tallyScore: 0
+  endingNoise: {fileID: 0}
+  endingDelay: 2
   tallyScreen: {fileID: 0}
   scorpion: {fileID: 0}
   fadeInColor: {r: 0, g: 0, b: 0, a: 1}
   fadeOutColor: {r: 0, g: 0, b: 0, a: 1}
+  animator: {fileID: 0}
 --- !u!4 &200270702
 Transform:
   m_ObjectHideFlags: 0
