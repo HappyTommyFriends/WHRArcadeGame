@@ -15,15 +15,15 @@ public class CreditsController : MonoBehaviour
 	public int scorePixelWidth = 200;
 	public float titleY = -1.1f;
 	public PlatformEnemyController rat;
-	
-	protected static string[] credits = { "29 Pixels Arcade Mechanics", "", "Damien O'Donnell", "Eddie Espinoza", "Gregorio Flores", "Jon Hamblin", "Lonnie Tisdale", "Peter Stuart", "Shawn Leavy", "Thomas Meston" };
-	
+
+	protected static string[] credits = { "By Silas Hart", "and","K st. Arcade Repair", "", "Damien O'Donnell", "Eddie Espinoza", "Gregorio Flores", "Jon Hamblin", "Lonnie Tisdale", "Peter Stuart", "Shawn Leavy", "Thomas Meston" };
+
     void Start() {
 		buildCreditsDisplay();
         slAnimator.Animate(creditsHolder, creditsHolder.transform.position, Vector3.zero, animationDuration);
 		invokeRatAnimations();
     }
-	
+
 	void invokeRatAnimations() {
 		Invoke("RatChill", 3f);
 		Invoke("RatLeft", 4f);
@@ -33,39 +33,39 @@ public class CreditsController : MonoBehaviour
 		Invoke("RatLeft", 12f);
 		Invoke("RatPattern1", 17f);
 	}
-	
+
 	void RatChill() {
 		rat.idle();
 	}
-	
+
 	void RatRight() {
 		rat.goRight();
 	}
-	
+
 	void RatLeft() {
 		rat.goLeft();
 	}
-	
+
 	void RatPattern1() {
 		RatChill();
 		Invoke("RatPattern1b", 3f);
 	}
-	
+
 	void RatPattern1b() {
 		RatRight();
 		Invoke("RatPattern1c", 2f);
 	}
-	
+
 	void RatPattern1c() {
 		RatChill();
 		Invoke("RatPattern1d", 3f);
 	}
-	
+
 	void RatPattern1d() {
 		RatLeft();
 		Invoke("RatPattern1", 2f);
 	}
-	
+
 	void buildCreditsDisplay() {
 		// GameObject creditsWord = alphabet.CenteredWordObject("Credits", scorePixelWidth);
 		// creditsWord.transform.parent = creditsHolder.transform;
@@ -86,11 +86,11 @@ public class CreditsController : MonoBehaviour
         if(selectButtonPressed())
 			sceneController.transitionTo("Menu");
     }
-	
+
 	bool selectButtonPressed() {
 		if(Input.GetButtonDown("Jump"))
 			return true;
-		
+
 		return Input.GetAxisRaw("Fire1") > 0;
 	}
 }
