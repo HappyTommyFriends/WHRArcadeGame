@@ -27,6 +27,7 @@ public class Speaker : MonoBehaviour
 	public float yOffset = -0.04f;
 	public float minimumStartX = -100f;
 	public float arrowOffset = 0;
+	public int hardMaxWidth = 92;
 	
 	public float letterWidth = 0.08f;
 	
@@ -42,7 +43,12 @@ public class Speaker : MonoBehaviour
 		int totalWidth = alphabet.width(message);
 		Debug.Log("totalWidth: " + totalWidth);
 		int estimatedLines = (int) Math.Ceiling(Math.Sqrt(totalWidth) / 8);
-		List<string> lines = alphabet.split(message, (totalWidth + 16) / estimatedLines);
+		int splitWidth = (totalWidth + 16) / estimatedLines;
+		Debug.Log("1" + splitWidth);
+		if(splitWidth > hardMaxWidth)
+			splitWidth = hardMaxWidth;
+		Debug.Log(splitWidth);
+		List<string> lines = alphabet.split(message, splitWidth);
 		lineCount = lines.Count;
 		int maxWidth = (int) (100 * (arrowWidth - pieceWidth));
 		foreach(string line in lines) {

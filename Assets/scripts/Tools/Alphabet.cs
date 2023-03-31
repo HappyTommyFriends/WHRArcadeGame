@@ -97,28 +97,23 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "!":
 			case "i":
 			case "l":
-				return 1;
+				return 2;
 			case " ":
 			case ",":
 			case "j":
 			case "s":
-				return 2;
+				return 3;
 			case "c":
-			case "k":
-			case "n":
-			case "o":
-			case "p":
 			case "r":
 			case "t":
 			case "v":
 			case "x":
-			case "y":
 			case "z":
 			case "E":
 			case "F":
 			case "I":
 			case "L":
-				return 3;
+				return 4;
 			case "1":
 			case "3":
 			case "4":
@@ -130,10 +125,14 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "d":
 			case "e":
 			case "f":
-			case "g":
 			case "h":
+			case "k":
+			case "n":
+			case "o":
+			case "p":
 			case "q":
 			case "u":
+			case "y":
 			case "B":
 			case "C":
 			case "D":
@@ -141,30 +140,32 @@ public class Alphabet : MonoBehaviour // This should be inheritable at some poin
 			case "H":
 			case "J":
 			case "K":
-			case "O":
 			case "P":
 			case "R":
 			case "S":
 			case "U":
 			case "Z":
-				return 4;
-			case "0":
+				return 5;
 			case "2":
 			case "6":
 			case "7":
 			case "a":
+			case "g":
 			case "m":
-			case "w":
 			case "A":
-			case "M":
 			case "N":
-			case "Q":
+			case "O":
 			case "T":
 			case "V":
-			case "W":
 			case "X":
 			case "Y":
-				return 5;
+				return 6;
+			case "w":
+			case "M":
+			case "W":
+				return 7;
+			case "0":
+			case "Q":
 			default:
 				return 8;
 		}
